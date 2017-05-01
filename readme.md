@@ -20,17 +20,9 @@
 npm install -g speedracer
 ```
 
-**Speed Racer** needs Chrome Canary to profile your files:
+**Speed Racer** needs Chrome to profile your files.
+Preferably, if you have Chrome Canary installed it will run it headless.
 
-**Mac OS**
-
-```sh
-brew cask install google-chrome-canary
-```
-
-**Others**
-
-Download [Chrome Canary](https://www.google.com/intl/en/chrome/browser/canary.html)
 
 ## Usage
 
