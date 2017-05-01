@@ -1,6 +1,6 @@
 {
   "name": "speedracer",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Collect performance metrics for your library/application",
   "author": "Nicolas Gryman <ngryman@gmail.com> (http://ngryman.sh/)",
   "license": "MIT",
