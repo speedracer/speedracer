@@ -63,12 +63,11 @@ Speed Racer serves all the scripts you specified, loads them into Chrome and tra
 
 ### Lifespan
 
-A run can last 5 seconds maximum. You can stop it earlier by calling `speedracer.end()` directly from a script.
-This is subject to change very soon.
+A run can last 5 seconds maximum. You can stop it earlier by calling `speedracer.end()` directly from a script (more control to come).
 
 ### Scripts
 
-You can enjoy lots of ES6 goodness without any transpilation. The only limitation for now is that you can't require any other script via `commonjs` (but it's coming very soon!).
+You can enjoy lots of ES6 goodness without any transpilation. The only limitation for now is that you can't require any other script via `commonjs` (but it's coming very soon!). You can browse examples [here](https://github.com/ngryman/speedracer/tree/master/test/fixtures).
 
 
 ## Reports
