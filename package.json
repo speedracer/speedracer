@@ -31,6 +31,7 @@
     "loud-rejection": "^1.6.0",
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
+    "ms": "^1.0.0",
     "pify": "^2.3.0",
     "string-width": "^2.0.0",
     "update-notifier": "^2.1.0",
