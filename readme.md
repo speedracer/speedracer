@@ -14,7 +14,7 @@
 
 ---
 
-Speed Racer is a perf runner, like a test runner, but for performance. It executes scripts in a given directory in Chrome (headless if possible) and produce reports on script execution, rendering and fps (more to come).
+Speed Racer is a perf runner, like a test runner, but for performance :car:. It executes scripts (*runs*) in Chrome (headlessly if possible) and produces reports on JavaScript execution, rendering and fps (more to come).
 
 ## Installation
 
@@ -23,7 +23,7 @@ npm install -g speedracer
 ```
 
 Speed Racer needs Chrome to profile your files.
-Preferably, if you have Chrome Canary installed it will run it headless.
+Preferably, if you have Chrome Canary installed it will run it headlessly.
 
 
 ## Usage
