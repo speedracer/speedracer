@@ -14,7 +14,7 @@
 
 ---
 
-Speed Racer is a perf runner, like a test runner, but for performance :car:. It executes scripts (*runs*) in Chrome (headlessly if possible) and produces reports on JavaScript execution, rendering and fps (more to come).
+Speed Racer is a perf runner, like a test runner, but for performance :racing_car:. It executes scripts (*runs*) in Chrome (headlessly if possible) and produces reports on JavaScript execution, rendering and fps (more to come).
 
 ## Installation
 
@@ -31,7 +31,7 @@ Preferably, if you have Chrome Canary installed it will run it headlessly.
 ```sh
 $ speedracer -h
 
-  🚗  Speed Racer v0.1.0
+  🏎 Speed Racer v0.1.0
 
   speedracer files [options]
 
