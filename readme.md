@@ -3,15 +3,12 @@
 </p>
 
 <p align="center">
-  Collect performance metrics of your library/application.
+  Collect performance metrics for your library/application.
 </p>
 
 <p align="center">
   <a href="//travis-ci.org/ngryman/speedracer">
     <img alt="Build Status" src="https://img.shields.io/travis/ngryman/speedracer.svg">
-  </a>
-  <a href="//codecov.io/github/ngryman/speedracer">
-    <img alt="Coverage" src="https://img.shields.io/codecov/c/github/ngryman/speedracer.svg">
   </a>
 </p>
 
