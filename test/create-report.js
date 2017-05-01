@@ -1,5 +1,4 @@
 // Native
-import fs from 'fs'
 import zlib from 'zlib'
 
 // Packages
@@ -8,9 +7,10 @@ import pify from 'pify'
 
 // Ours
 import createReport from '../lib/create-report'
+const { readFile } = require('./.internal/util')
 
 const loadTrace = filename =>
-  pify(fs.readFile)(filename)
+  readFile(filename)
     .then(pify(zlib.gunzip))
     .then(JSON.parse)
 

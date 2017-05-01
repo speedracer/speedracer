@@ -12,8 +12,8 @@ const mkdirp = require('mkdirp')
 const updateNotifier = require('update-notifier')
 
 // Ours
-const { logo, emphasis, subtle } = require('../lib/output')
 const createReport = require('../lib/create-report')
+const display = require('../lib/display')
 const displayReport = require('../lib/display-report')
 const launchChrome = require('../lib/launch-chrome')
 const pkg = require('../package.json')
@@ -55,28 +55,28 @@ const argv = minimist(process.argv.slice(2), {
 
 /* eslint-disable */
 const help = () => console.log(`
-  ${logo()}
+  ${display.logo()}
 
   ${chalk.red(`speedracer ${chalk.underline('files')} [options]`)}
 
-  ${chalk.dim('Options:')}
+  ${display.section('Options')}
 
-    -h, --help            Usage information  ${subtle('false')}
-    -t, --traces          Save traces        ${subtle(`${argv.t}`)}
-    -r, --reports         Save reports       ${subtle(`${argv.r}`)}
-    -o ${emphasis('dir')}, --output=${emphasis('dir')}  Output directory   ${subtle('./.speedracer')}
+    -h, --help            Usage information  ${display.subtle('false')}
+    -t, --traces          Save traces        ${display.subtle(`${argv.t}`)}
+    -r, --reports         Save reports       ${display.subtle(`${argv.r}`)}
+    -o ${display.emphasis('dir')}, --output=${display.emphasis('dir')}  Output directory   ${display.subtle('./.speedracer')}
 
-  ${chalk.dim('Examples:')}
+  ${display.section('Examples')}
 
-  ${chalk.gray('–')} Race files in ${chalk.underline('perf')} directory:
+  ${display.subtle('–')} Race files in ${chalk.underline('perf')} directory:
 
     ${chalk.cyan('$ speedracer')}
 
-  ${chalk.gray('–')} Race files matching ${chalk.underline('perf/**/*.js')} glob:
+  ${display.subtle('–')} Race files matching ${chalk.underline('perf/**/*.js')} glob:
 
     ${chalk.cyan(`$ speedracer ${chalk.cyan('perf/**/*.js')}`)}
 
-  ${chalk.gray('–')} Save traces and reports:
+  ${display.subtle('–')} Save traces and reports:
 
     ${chalk.cyan('$ speedracer --reports --traces --output=./speedracer')}
 `)
@@ -88,7 +88,7 @@ if (argv.help) {
 }
 
 console.log(`
-  ${logo()}
+  ${display.logo()}
 `)
 
 const setContext = (ctx, key, subkey) => val => {
