@@ -57,11 +57,25 @@ $ speedracer -h
     $ speedracer --reports --traces --output=./speedracer
 ```
 
+## Runs
+
+Speed Racer serves all the scripts you specified, loads them into Chrome and traces them. It's done sequentially for now.
+
+### Lifespan
+
+A run can last 5 seconds maximum. You can stop it earlier by calling `speedracer.end()` directly from a script.
+This is subject to change very soon.
+
+### Scripts
+
+You can enjoy lots of ES6 goodness without any transpilation. The only limitation for now is that you can't require any other script via `commonjs` (but it's coming very soon!).
+
+
 ## Reports
 
-Reports are `json` files that contain a performance summary of your run. They give you insight of what is taking time and why. 
+Reports are `json` files that contain a performance summary of your run. They give you insights of what is taking time and why. 
 
-They can be useful to track performance regression. You can save those reports and compare them with new ones before commiting changes. You will then know if the new changes affected performance in a wrong way.
+They can be useful to track performance regressions. You can save those reports and compare them with new ones before commiting changes. You will then know if the new changes affected performance in a some way.
 
 Here is the format:
 ```json
@@ -115,10 +129,10 @@ Here is the format:
 
 ## Traces
 
-Speed Racer can save traces of your runs. Traces contains events emitted by Chrome when your script is executed. Those events gives a bunch of informations about the overall performance of your script. Here is the detail [format](https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/preview#heading=h.uxpopqvbjezh).
+Speed Racer can also save traces of your runs. Traces contains events emitted by Chrome when your scripts are executed. Those events gives a bunch of informations about the overall performance of your scripts. Here is the detail [format](https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/preview#heading=h.uxpopqvbjezh).
 
-You can use those traces to analyze them the way you want or simply load them in the Timeline/Performance tab of Chrome.
-Traces can be big, so they are saved `gzip`.
+You can analyze them the way you want or simply load them in the Timeline/Performance tab of Chrome.
+Traces can be pretty big, so they are saved `gzip`.
 
 ### Load in Devtools
 
@@ -132,5 +146,3 @@ $ gunzip high-cup.trace
 ```
 
 Then you load it in Chrome Devtools and enjoy :tada:!
-
-If you are interesHere is a detail of the raw format: https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/preview#heading=h.uxpopqvbjezh,
