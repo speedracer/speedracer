@@ -17,6 +17,8 @@
 
 ---
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ngryman/speedracer.svg)](https://greenkeeper.io/)
+
 ## Installation
 
 ```sh
