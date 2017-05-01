@@ -1,0 +1,9 @@
+{
+  "extends": "ngryman",
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "yoda": 0
+  }
+}

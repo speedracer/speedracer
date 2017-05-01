@@ -1,0 +1,16 @@
+# project
+.nyc_output
+.todo
+.speedracer
+
+# node
+node_modules/
+npm-debug.log
+
+# OS
+.DS_Store
+Desktop.ini
+._*
+Thumbs.db
+.Spotlight-V100
+.Trashes

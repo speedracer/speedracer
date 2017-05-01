@@ -1,0 +1,21 @@
+sudo: false
+language: node_js
+before_install:
+  - export CHROME_URL=https://storage.googleapis.com/chromium-browser-snapshots/Linux_x64
+  - export CHROME_REV=$(curl -s ${CHROME_URL}/LAST_CHANGE)
+  - curl ${CHROME_URL}/${CHROME_REV}/chrome-linux.zip --create-dirs -o out/chrome-linux.zip
+  - unzip out/chrome-linux.zip -d out
+  - export SPEEDRACER_CHROME=$PWD/out/chrome-linux/chrome
+cache:
+  directories:
+    - node_modules
+branches:
+  only:
+    - master
+    - /^greenkeeper-.*$/
+notifications:
+  email: false
+node_js:
+  - '6'
+  - '5'
+after_success: npm run coverage

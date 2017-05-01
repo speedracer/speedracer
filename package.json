@@ -1,0 +1,43 @@
+{
+  "name": "speedracer",
+  "version": "0.0.0",
+  "description": "Collect performance metrics of your library/application",
+  "author": "Nicolas Gryman <ngryman@gmail.com> (http://ngryman.sh/)",
+  "license": "MIT",
+  "repository": "ngryman/speedracer",
+  "engines": {
+    "node": ">=5"
+  },
+  "files": [
+    "bin",
+    "lib"
+  ],
+  "bin": {
+    "speedracer": "./bin/speedracer.js"
+  },
+  "scripts": {
+    "lint": "eslint bin/*.js lib/*.js",
+    "pretest": "npm run -s lint",
+    "test": "ava",
+    "start": "yarn test -- --watch"
+  },
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "chrome-remote-interface": "^0.21.0",
+    "delay": "^2.0.0",
+    "devtools-timeline-model": "^1.3.0",
+    "listr": "^0.12.0",
+    "loud-rejection": "^1.6.0",
+    "minimist": "^1.2.0",
+    "mkdirp": "^0.5.1",
+    "pify": "^2.3.0",
+    "string-width": "^2.0.0",
+    "update-notifier": "^2.1.0",
+    "word-wrap": "^1.2.1"
+  },
+  "devDependencies": {
+    "ava": "^0.19.1",
+    "eslint": "^3.19.0",
+    "eslint-config-ngryman": "^1.7.1"
+  }
+}
