@@ -62,13 +62,6 @@ $ speedracer -h
 
 Speed Racer serves all the scripts you specified, loads them into Chrome and traces them. It's done sequentially for now.
 
-### Duration
-
-By default a run last 5 seconds maximum. This can be changed with the `--duration` flag.
-Sometimes you may want it to stop earlier. You can stop a run by calling `speedracer.end()` directly from a script.
-
-*More control on run duration is coming*.
-
 ### Scripts
 
 Scripts can leverage on Chrome native DOM and ES6 goodness without any external tools. If you want more details on what is available out-of-the-box here is a [list](https://www.chromestatus.com/features).
@@ -77,6 +70,20 @@ You can use `import` and `require` in your scripts, Speed Racer will dynamically
 
 You can browse examples of scripts [here](https://github.com/ngryman/speedracer/tree/master/test/fixtures).
 
+### Runtime
+
+Scripts can control Speed Racer behavior using the provided runtime:
+```js
+import speedracer from 'speedracer'
+// ...
+```
+
+#### `speedracer.end()`
+
+By default a run last 5 seconds maximum. This can be changed with the `--duration` flag.
+But sometimes you may want it to stop earlier. `speedracer.end()` will stop the run immediately.
+
+*More methods to come*.
 
 ## Reports
 
