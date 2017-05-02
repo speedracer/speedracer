@@ -6,9 +6,9 @@ const net = require('net')
 import test from 'ava'
 
 // Ours
-import startServer from '../lib/start-server'
+import startServer from '../lib/server'
 
-test.serial.cb('start server on port 3000', t => {
+test.cb('start server', t => {
   const cleanup = client => {
     client.removeAllListeners()
     client.end()
@@ -16,7 +16,7 @@ test.serial.cb('start server on port 3000', t => {
     client.unref()
   }
 
-  startServer().then(server => {
+  startServer({ baseDir: '.', port: 3000 }).then(server => {
     const client = net.createConnection(3000)
     client.once('error', () => {
       server.close()
@@ -31,8 +31,8 @@ test.serial.cb('start server on port 3000', t => {
   })
 })
 
-test.serial.cb('serve html for a script name', t => {
-  startServer().then(server => {
+test.cb('serve html for a script name', t => {
+  startServer({ baseDir: '.', port: 3000 }).then(server => {
     http.request({
       host: 'localhost',
       port: 3000,
@@ -48,8 +48,8 @@ test.serial.cb('serve html for a script name', t => {
   })
 })
 
-test.serial.cb('serve the script itself', t => {
-  startServer().then(server => {
+test.cb('serve the script itself', t => {
+  startServer({ baseDir: '.', port: 3000 }).then(server => {
     http.request({
       host: 'localhost',
       port: 3000,
@@ -65,8 +65,8 @@ test.serial.cb('serve the script itself', t => {
   })
 })
 
-test.serial.cb('accept a base path', t => {
-  startServer('test/fixtures').then(server => {
+test.cb('accept a base directory', t => {
+  startServer({ baseDir: 'test/fixtures', port: 3000 }).then(server => {
     http.request({
       host: 'localhost',
       port: 3000,

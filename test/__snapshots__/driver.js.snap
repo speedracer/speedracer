@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`collect events 1`] = `
+Array [
+  Array [
+    Object {
+      "value": Array [],
+    },
+  ],
+]
+`;
+
+exports[`load a file 1`] = `
+Array [
+  Array [
+    Object {
+      "url": "http://localhost:3000/test/fixtures/fast",
+    },
+  ],
+]
+`;
+
+exports[`trace a file 1`] = `
+Array [
+  Array [
+    "tracing started",
+  ],
+  Array [
+    "buffer usage: 1.00%",
+  ],
+  Array [
+    "tracing complete",
+  ],
+]
+`;

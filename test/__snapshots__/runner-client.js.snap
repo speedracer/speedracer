@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`execute a run 1`] = `
+Array [
+  Array [
+    "{\\"type\\":\\"file:start\\"}",
+  ],
+  Array [
+    "{\\"type\\":\\"run:start\\",\\"run\\":{\\"title\\":\\"foo\\"}}",
+  ],
+  Array [
+    "{\\"type\\":\\"run:end\\",\\"run\\":{\\"title\\":\\"foo\\"}}",
+  ],
+  Array [
+    "{\\"type\\":\\"file:end\\"}",
+  ],
+]
+`;
+
+exports[`execute an async run 1`] = `
+Array [
+  Array [
+    "{\\"type\\":\\"file:start\\"}",
+  ],
+  Array [
+    "{\\"type\\":\\"run:start\\",\\"run\\":{\\"title\\":\\"foo\\"}}",
+  ],
+  Array [
+    "{\\"type\\":\\"run:end\\",\\"run\\":{\\"title\\":\\"foo\\"}}",
+  ],
+  Array [
+    "{\\"type\\":\\"file:end\\"}",
+  ],
+]
+`;
+
+exports[`execute multiple runs in band 1`] = `
+Array [
+  Array [
+    "{\\"type\\":\\"file:start\\"}",
+  ],
+  Array [
+    "{\\"type\\":\\"run:start\\",\\"run\\":{\\"title\\":\\"foo\\"}}",
+  ],
+  Array [
+    "{\\"type\\":\\"run:end\\",\\"run\\":{\\"title\\":\\"foo\\"}}",
+  ],
+  Array [
+    "{\\"type\\":\\"run:start\\",\\"run\\":{\\"title\\":\\"bar\\"}}",
+  ],
+  Array [
+    "{\\"type\\":\\"run:end\\",\\"run\\":{\\"title\\":\\"bar\\"}}",
+  ],
+  Array [
+    "{\\"type\\":\\"run:start\\",\\"run\\":{\\"title\\":\\"baz\\"}}",
+  ],
+  Array [
+    "{\\"type\\":\\"run:end\\",\\"run\\":{\\"title\\":\\"baz\\"}}",
+  ],
+  Array [
+    "{\\"type\\":\\"file:end\\"}",
+  ],
+]
+`;
+
+exports[`handle exception in a run 1`] = `
+Array [
+  Array [
+    "{\\"type\\":\\"file:start\\"}",
+  ],
+  Array [
+    "{\\"type\\":\\"run:start\\",\\"run\\":{\\"title\\":\\"foo\\"}}",
+  ],
+  Array [
+    "{\\"type\\":\\"run:error\\",\\"run\\":{\\"title\\":\\"foo\\"},\\"err\\":{}}",
+  ],
+  Array [
+    "{\\"type\\":\\"run:end\\",\\"run\\":{\\"title\\":\\"foo\\"}}",
+  ],
+  Array [
+    "{\\"type\\":\\"run:start\\",\\"run\\":{\\"title\\":\\"bar\\"}}",
+  ],
+  Array [
+    "{\\"type\\":\\"run:error\\",\\"run\\":{\\"title\\":\\"bar\\"},\\"err\\":{}}",
+  ],
+  Array [
+    "{\\"type\\":\\"run:end\\",\\"run\\":{\\"title\\":\\"bar\\"}}",
+  ],
+  Array [
+    "{\\"type\\":\\"run:start\\",\\"run\\":{\\"title\\":\\"baz\\"}}",
+  ],
+  Array [
+    "{\\"type\\":\\"run:end\\",\\"run\\":{\\"title\\":\\"baz\\"}}",
+  ],
+  Array [
+    "{\\"type\\":\\"file:end\\"}",
+  ],
+]
+`;

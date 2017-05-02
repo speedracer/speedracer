@@ -5,22 +5,23 @@ const path = require('path')
 
 // Packages
 const chalk = require('chalk')
+const eachSeries = require('p-each-series')
 const loudRejection = require('loud-rejection')
-const Listr = require('listr')
 const minimist = require('minimist')
 const mkdirp = require('mkdirp')
+const series = require('p-series')
 const updateNotifier = require('update-notifier')
 
 // Ours
-const createReport = require('../lib/create-report')
+const createDriver = require('../lib/driver')
+const createRunnerServer = require('../lib/runner-server')
 const display = require('../lib/display')
-const displayReport = require('../lib/display-report')
-const launchChrome = require('../lib/launch-chrome')
+const launchChrome = require('../lib/chrome-launcher')
 const pkg = require('../package.json')
-const saveReport = require('../lib/save-report')
 const saveTrace = require('../lib/save-trace')
-const startServer = require('../lib/start-server')
+const startServer = require('../lib/server')
 const traceFile = require('../lib/trace-file')
+const { forEachProp, pipe } = require('../lib/.internal/util')
 
 loudRejection()
 
@@ -43,15 +44,17 @@ const argv = minimist(process.argv.slice(2), {
   string: ['output'],
   boolean: ['help', 'traces', 'reports'],
   alias: {
-    duration: 'd',
     help: 'h',
     traces: 't',
     reports: 'r',
-    output: 'o'
+    output: 'o',
+    port: 'p'
   },
   default: {
-    output: path.join(process.cwd(), '.speedracer'),
-    duration: 5000
+    'output': path.join(process.cwd(), '.speedracer'),
+    'port': 3000,
+    'runner-port': 3001,
+    'timeout': 5000
   }
 })
 
@@ -63,11 +66,13 @@ const help = () => console.log(`
 
   ${display.section('Options')}
 
-    -h, --help            Usage information  ${display.subtle('false')}
-    -t, --traces          Save traces        ${display.subtle(`${argv.t}`)}
-    -r, --reports         Save reports       ${display.subtle(`${argv.r}`)}
-    -o ${display.emphasis('dir')}, --output=${display.emphasis('dir')}  Output directory   ${display.subtle('./.speedracer')}
-    -d, --duration        Run duration (ms)  ${display.subtle('5000')}
+    -h, --help            Usage information    ${display.subtle('false')}
+    -t, --traces          Save traces          ${display.subtle(argv.t)}
+    -r, --reports         Save reports         ${display.subtle(argv.r)}
+    -o ${display.emphasis('dir')}, --output=${display.emphasis('dir')}  Output directory     ${display.subtle('.speedracer')}
+    -p, --port            Tracing server port  ${display.subtle(argv.p)}
+    --runner-port         Runner server port   ${display.subtle(argv.rp)}
+    --timeout             Run timeout         ${display.subtle(argv.timeout)}
 
   ${display.section('Examples')}
 
@@ -90,112 +95,72 @@ if (argv.help) {
   process.exit(0)
 }
 
-console.log(`
-  ${display.logo()}
-`)
-
-const setContext = (ctx, key, subkey) => val => {
-  if (subkey) {
-    ctx[key] = ctx[key] || {}
-    ctx[key][subkey] = val
-  }
-  else {
-    ctx[key] = val
-  }
-  return val
+const header = () => {
+  console.log(`
+    ${display.logo()}
+  `)
 }
 
-const start = () => {
-  const tasks = [
-    {
-      title: 'Launching headless browser',
-      task: ctx => launchChrome()
-        .then(setContext(ctx, 'chrome'))
-    },
-    {
-      title: 'Starting tracing server',
-      task: ctx => startServer(process.cwd())
-        .then(setContext(ctx, 'server'))
-    }
-  ]
-
-  return new Listr(tasks)
+const footer = () => {
+  console.log('')
 }
 
-const traceFiles = ({ files, options }) => {
-  const tasks = files.map(file => ({
-    title: file,
-    task: (ctx, task) => traceFile(task, file, options)
-      .then(setContext(ctx, 'traces', file))
-      .then(events => {
-        if (!options.traces) return
-        const filename = path.join(options.output, `${path.basename(file, '.js')}.trace`)
-        return saveTrace(filename, events)
-      })
-  }))
-
-  return new Listr(tasks)
-}
-
-const analyzeFiles = ({ files, options }) => {
-  const tasks = files.map(file => ({
-    title: file,
-    task: ctx => createReport(file, ctx.traces[file], options)
-      .then(setContext(ctx, 'reports', file))
-      .then(report => {
-        if (!options.reports) return
-        const filename = path.join(options.output, `${path.basename(file, '.js')}.speedracer`)
-        return saveReport(filename, report)
-      })
-  }))
-
-  return new Listr(tasks)
-}
-
-const displayReports = (ctx) => {
-  Object.keys(ctx.reports).forEach(file => displayReport(ctx.reports[file]))
-  return ctx
-}
-
-const cleanup = ctx => {
-  if (ctx.chrome) {
-    ctx.chrome.kill()
-  }
-  if (ctx.server) {
-    ctx.server.close()
-  }
-}
-
-const run = (files, options) => {
+const prepare = ({ files, options }) => {
   if (files.length === 0) {
-    console.error(chalk.red('No files to trace found!\n'))
-    process.exit(1)
+    throw new Error('No files to trace found!')
   }
 
   if (options.traces || options.reports) {
     mkdirp.sync(options.output)
   }
-
-  const tasks = [
-    {
-      title: 'Starting',
-      task: start
-    },
-    {
-      title: 'Tracing',
-      task: traceFiles
-    },
-    {
-      title: 'Reporting',
-      task: analyzeFiles
-    }
-  ]
-
-  const runner = new Listr(tasks)
-  runner.run({ files, options })
-    .then(displayReports)
-    .then(cleanup)
-    .then(() => console.log(''))
 }
+
+// TODO: check what happens if one fails, how can we cleanup the others?
+const initialize = baton =>
+series([
+  () => launchChrome(),
+  () => startServer({ baseDir: process.cwd(), port: baton.options.port }),
+  () => createRunnerServer({ port: baton.options['runner-port'] }),
+  () => createDriver(baton.options)
+]).then(modules => {
+  baton.modules = {
+    chrome: modules[0],
+    server: modules[1],
+    runner: modules[2],
+    driver: modules[3]
+  }
+})
+
+const runFiles = ({ files, options, modules }) =>
+eachSeries(files, file =>
+  traceFile(file, modules.runner, modules.driver)
+    .then(runs => {
+      if (!options.traces) return
+      runs.forEach(run => {
+        const filename = path.join(options.output, `${run.title}.trace`)
+        return saveTrace(filename, run.events)
+      })
+    })
+)
+
+const cleanup = ({ modules }) =>
+forEachProp(modules, m => { if (m) m.close() })
+
+const error = (err, baton) => {
+  console.error(chalk.red(err.message))
+  cleanup(baton)
+  footer()
+  process.exit(1)
+}
+
+const run = (files, options) =>
+pipe({ files, options, modules: {}}, [
+  header,
+  prepare,
+  initialize,
+  runFiles,
+  cleanup,
+  footer
+], error)
 
 run(argv._, argv)

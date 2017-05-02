@@ -56,7 +56,6 @@ $ speedracer -h
     -t, --traces          Save traces        false
     -r, --reports         Save reports       false
     -o dir, --output=dir  Output directory   ./.speedracer
-    -d, --duration        Run duration (ms)  5000
 
   Examples:
 
@@ -95,8 +94,7 @@ import speedracer from 'speedracer'
 
 #### `speedracer.end()`
 
-By default a run last 5 seconds maximum. This can be changed with the `--duration` flag.
-But sometimes you may want it to stop earlier. `speedracer.end()` will stop the run immediately.
+TODO
 
 *More methods to come*.
 
