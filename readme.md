@@ -71,9 +71,11 @@ Sometimes you may want it to stop earlier. You can stop a run by calling `speedr
 
 ### Scripts
 
-As they are run using Chrome you have access to native DOM and lots of ES6 goodness without any transpilation. If you want more details on what is available out-of-the-box here is a [list](https://www.chromestatus.com/features).
+Scripts can leverage on Chrome native DOM and ES6 goodness without any external tools. If you want more details on what is available out-of-the-box here is a [list](https://www.chromestatus.com/features).
 
-The only limitation for now is that you can't require any other script via `commonjs` (*but it's coming very soon!*). You can browse examples [here](https://github.com/ngryman/speedracer/tree/master/test/fixtures).
+You can use `import` and `require` in your scripts, Speed Racer will dynamically bundle and serve them.
+
+You can browse examples of scripts [here](https://github.com/ngryman/speedracer/tree/master/test/fixtures).
 
 
 ## Reports
