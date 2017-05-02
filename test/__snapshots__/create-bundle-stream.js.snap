@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`create a bundle 1`] = `
+"(function () {
+'use strict';
+
+var dep = () => {
+  console.log(\\"Hello Speed, I'm Racer X!\\");
+};
+
+dep();
+
+}());
+"
+`;
+
+exports[`create a bundle that import runtime 1`] = `
+"(function () {
+'use strict';
+
+// eslint-disable-next-line
+var speedracer = new class __SpeedRacer__ {
+  end() {
+    fetch('http://localhost:3001');
+  }
+};
+
+speedracer.end();
+
+}());
+"
+`;
+
+exports[`create a bundle that uses cjs 1`] = `
+"var run = (function () {
+'use strict';
+
+var dep = () => {
+  console.log(\\"Hello Speed, I'm Racer X!\\");
+};
+
+
+var dep$1 = Object.freeze({
+	default: dep
+});
+
+var dep$2 = ( dep$1 && dep ) || dep$1;
+
+dep$2();
+
+var bundleCjs = {
+
+};
+
+return bundleCjs;
+
+}());
+"
+`;

@@ -33,6 +33,9 @@
     "mkdirp": "^0.5.1",
     "ms": "^1.0.0",
     "pify": "^2.3.0",
+    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-stream": "^1.19.0",
     "string-width": "^2.0.0",
     "update-notifier": "^2.1.0",
     "word-wrap": "^1.2.1"
@@ -40,6 +43,7 @@
   "devDependencies": {
     "ava": "^0.19.1",
     "eslint": "^3.19.0",
-    "eslint-config-ngryman": "^1.7.1"
+    "eslint-config-ngryman": "^1.7.1",
+    "get-stream": "^3.0.0"
   }
 }
