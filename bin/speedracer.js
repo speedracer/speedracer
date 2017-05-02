@@ -43,13 +43,15 @@ const argv = minimist(process.argv.slice(2), {
   string: ['output'],
   boolean: ['help', 'traces', 'reports'],
   alias: {
+    duration: 'd',
     help: 'h',
     traces: 't',
     reports: 'r',
     output: 'o'
   },
   default: {
-    output: path.join(process.cwd(), '.speedracer')
+    output: path.join(process.cwd(), '.speedracer'),
+    duration: 5000
   }
 })
 
@@ -65,6 +67,7 @@ const help = () => console.log(`
     -t, --traces          Save traces        ${display.subtle(`${argv.t}`)}
     -r, --reports         Save reports       ${display.subtle(`${argv.r}`)}
     -o ${display.emphasis('dir')}, --output=${display.emphasis('dir')}  Output directory   ${display.subtle('./.speedracer')}
+    -d, --duration        Run duration (ms)  ${display.subtle('5000')}
 
   ${display.section('Examples')}
 

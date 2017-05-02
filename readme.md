@@ -41,6 +41,7 @@ $ speedracer -h
     -t, --traces          Save traces        false
     -r, --reports         Save reports       false
     -o dir, --output=dir  Output directory   ./.speedracer
+    -d, --duration        Run duration (ms)  5000
 
   Examples:
 
@@ -61,13 +62,18 @@ $ speedracer -h
 
 Speed Racer serves all the scripts you specified, loads them into Chrome and traces them. It's done sequentially for now.
 
-### Lifespan
+### Duration
 
-A run can last 5 seconds maximum. You can stop it earlier by calling `speedracer.end()` directly from a script (more control to come).
+By default a run last 5 seconds maximum. This can be changed with the `--duration` flag.
+Sometimes you may want it to stop earlier. You can stop a run by calling `speedracer.end()` directly from a script.
+
+*More control on run duration is coming*.
 
 ### Scripts
 
-You can enjoy lots of ES6 goodness without any transpilation. The only limitation for now is that you can't require any other script via `commonjs` (but it's coming very soon!). You can browse examples [here](https://github.com/ngryman/speedracer/tree/master/test/fixtures).
+As they are run using Chrome you have access to native DOM and lots of ES6 goodness without any transpilation. If you want more details on what is available out-of-the-box here is a [list](https://www.chromestatus.com/features).
+
+The only limitation for now is that you can't require any other script via `commonjs` (*but it's coming very soon!*). You can browse examples [here](https://github.com/ngryman/speedracer/tree/master/test/fixtures).
 
 
 ## Reports
