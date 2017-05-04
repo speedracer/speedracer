@@ -127,7 +127,9 @@ series([
   () => createRunnerServer({
     port: baton.options['runner-port']
   }),
-  () => createDriver(baton.options)
+  () => createDriver({
+    port: baton.options.port
+  })
 ]).then(modules => {
   baton.modules = {
     chrome: modules[0],
