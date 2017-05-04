@@ -18,7 +18,6 @@ const createRunnerServer = require('../lib/runner-server')
 const display = require('../lib/display')
 const launchChrome = require('../lib/chrome-launcher')
 const pkg = require('../package.json')
-const saveTrace = require('../lib/save-trace')
 const startServer = require('../lib/server')
 const traceFile = require('../lib/trace-file')
 const { forEachProp, pipe } = require('../lib/.internal/util')
@@ -143,11 +142,9 @@ const runFiles = ({ files, options, modules }) =>
 eachSeries(files, file =>
   traceFile(file, modules.runner, modules.driver)
     .then(runs => {
-      if (!options.traces) return
-      runs.forEach(run => {
-        const filename = path.join(options.output, `${run.title}.trace`)
-        return saveTrace(filename, run.events)
-      })
+      if (options.traces) {
+        runs.forEach(run => run.saveTrace(options.output))
+      }
     })
 )
 

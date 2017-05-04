@@ -31,7 +31,6 @@
     "locate-chrome": "^0.1.1",
     "loud-rejection": "^1.6.0",
     "minimist": "^1.2.0",
-    "mkdirp": "^0.5.1",
     "ms": "^1.0.0",
     "ora": "^1.2.0",
     "p-each-series": "^1.0.0",
