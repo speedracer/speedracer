@@ -119,8 +119,14 @@ const prepare = ({ files, options }) => {
 const initialize = baton =>
 series([
   () => launchChrome(),
-  () => startServer({ baseDir: process.cwd(), port: baton.options.port }),
-  () => createRunnerServer({ port: baton.options['runner-port'] }),
+  () => startServer({
+    baseDir: process.cwd(),
+    port: baton.options.port,
+    clientPort: baton.options['runner-port']
+  }),
+  () => createRunnerServer({
+    port: baton.options['runner-port']
+  }),
   () => createDriver(baton.options)
 ]).then(modules => {
   baton.modules = {
