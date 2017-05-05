@@ -29,7 +29,7 @@ run('render loop', r => {
     const colors = ['blue', 'white', 'red']
     let frame = 0
     const render = () => {
-      if (frame < 60) {
+      if (frame < 600) {
         requestAnimationFrame(render)
       }
       else {

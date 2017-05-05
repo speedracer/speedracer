@@ -22,6 +22,8 @@ const startServer = require('../lib/server')
 const traceFile = require('../lib/trace-file')
 const { forEachProp, pipe } = require('../lib/.internal/util')
 
+const DEBUG = process.env.DEBUG
+
 loudRejection()
 
 if (!process.pkg) {
@@ -141,11 +143,16 @@ series([
 const runFiles = ({ files, options, modules }) =>
 eachSeries(files, file =>
   traceFile(file, modules.runner, modules.driver)
-    .then(runs => {
+    .then(runs => eachSeries(runs, run => {
       if (options.traces) {
-        runs.forEach(run => run.saveTrace(options.output))
+        run.saveTrace(options.output)
       }
-    })
+
+      run.createReport()
+      if (options.reports) {
+        run.saveReport(options.output)
+      }
+    }))
 )
 
 const cleanup = ({ modules }) =>
@@ -153,6 +160,7 @@ forEachProp(modules, m => { if (m) m.close() })
 
 const error = (err, baton) => {
   console.error(chalk.red(err.message))
+  if (DEBUG) console.error(err.stack)
   cleanup(baton)
   footer()
   process.exit(1)
