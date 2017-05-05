@@ -1,3 +1,9 @@
+<h1 align="center">speedracer</h1>
+
+<p align="center">
+  :racing_car::boom: ............ :red_car::taxi::blue_car::police_car::fire_engine::minibus::truck::bus::articulated_lorry::tractor:
+</p>
+
 <p align="center">
   <img alt="Speed Racer" src="https://raw.githubusercontent.com/ngryman/artworks/master/speedracer/heading/speedracer@2x.png">
 </p>
@@ -18,6 +24,12 @@
 ---
 
 Speed Racer is a perf runner, like a test runner, but for performance :racing_car:. It executes scripts (*runs*) in Chrome (headlessly if possible) and produces reports on JavaScript execution, rendering and fps (more to come).
+
+<p align="center">
+  <br><br>
+  <b>Have a :mag: on :package: <a href="//github.com/ngryman/speedracer/projects/1">0.2.0</a></b>
+  <br><br>
+</p>
 
 ## Installation
 
