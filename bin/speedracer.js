@@ -10,14 +10,13 @@ const loudRejection = require('loud-rejection')
 const minimist = require('minimist')
 const mkdirp = require('mkdirp')
 const series = require('p-series')
-const updateNotifier = require('update-notifier')
 
 // Ours
+const checkForUpdate = require('../lib/check-for-update')
 const createDriver = require('../lib/driver')
 const createRunnerServer = require('../lib/runner-server')
 const display = require('../lib/display')
 const launchChrome = require('../lib/chrome-launcher')
-const pkg = require('../package.json')
 const startServer = require('../lib/server')
 const traceFile = require('../lib/trace-file')
 const { forEachProp, pipe } = require('../lib/.internal/util')
@@ -25,21 +24,7 @@ const { forEachProp, pipe } = require('../lib/.internal/util')
 const DEBUG = process.env.DEBUG
 
 loudRejection()
-
-if (!process.pkg) {
-  const notifier = updateNotifier({ pkg })
-  const { update } = notifier
-
-  if (update) {
-    /* eslint-disable */
-    let message = `Update available! ${chalk.red(update.current)} → ${chalk.green(update.latest)} \n`;
-    message += `Run ${chalk.magenta('npm i -g now')} to update!\n`
-    message += `${chalk.magenta('Changelog:')} https://github.com/ngryman/speedracer/releases/tag/${update.latest}`
-    /* eslint-enable */
-
-    notifier.notify({ message })
-  }
-}
+checkForUpdate()
 
 const argv = minimist(process.argv.slice(2), {
   string: ['output'],
@@ -73,7 +58,7 @@ const help = () => console.log(`
     -o ${display.emphasis('dir')}, --output=${display.emphasis('dir')}  Output directory     ${display.subtle('.speedracer')}
     -p, --port            Tracing server port  ${display.subtle(argv.p)}
     --runner-port         Runner server port   ${display.subtle(argv.rp)}
-    --timeout             Run timeout         ${display.subtle(argv.timeout)}
+    --timeout             Run timeout          ${display.subtle(argv.timeout)}
 
   ${display.section('Examples')}
 
