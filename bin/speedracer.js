@@ -81,15 +81,11 @@ if (argv.help) {
   process.exit(0)
 }
 
-const header = () => {
-  console.log(`
-    ${display.logo()}
-  `)
-}
+const header = () => console.log(`
+  ${display.logo()}
+`)
 
-const footer = () => {
-  console.log('')
-}
+const footer = () => console.log('')
 
 const prepare = ({ files, options }) => {
   if (files.length === 0) {
