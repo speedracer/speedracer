@@ -16,7 +16,7 @@
     "speedracer": "./bin/speedracer.js"
   },
   "scripts": {
-    "lint": "eslint bin/*.js lib/*.js",
+    "lint": "eslint bin/*.js lib/*/*.js",
     "pretest": "npm run -s lint",
     "test": "ava --serial",
     "start": "yarn test -- --watch"

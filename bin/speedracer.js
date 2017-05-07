@@ -32,6 +32,7 @@ const defaultFlags = {
   runnerPort: 3001
 }
 
+/* eslint-disable */
 const argv = meow({
   description: false,
   help: `
@@ -59,7 +60,6 @@ const argv = meow({
     ${display.subtle('–')} Save traces and reports:
 
       ${chalk.cyan('$ speedracer --reports --traces --output=./speedracer')}
-
   `
 }, {
   string: ['output'],
@@ -73,6 +73,7 @@ const argv = meow({
   },
   default: defaultFlags
 })
+/* eslint-enable */
 
 const header = () => console.log('')
 
