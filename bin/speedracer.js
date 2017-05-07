@@ -6,8 +6,7 @@ const path = require('path')
 // Packages
 const chalk = require('chalk')
 const mapSeries = require('p-map-series')
-const loudRejection = require('loud-rejection')
-const minimist = require('minimist')
+const meow = require('meow')
 const mkdirp = require('mkdirp')
 const series = require('p-series')
 const waterfall = require('p-waterfall')
@@ -25,10 +24,48 @@ const { flat, forEachProp, pipe } = require('../lib/.internal/util')
 
 const DEBUG = process.env.DEBUG
 
-loudRejection()
 checkForUpdate()
 
-const argv = minimist(process.argv.slice(2), {
+const defaultFlags = {
+  output: path.join(process.cwd(), '.speedracer'),
+  port: 3000,
+  runnerPort: 3001,
+  timeout: 5000
+}
+
+const argv = meow({
+  description: false,
+  help: `
+    ${display.logo()}
+
+    ${chalk.red(`speedracer ${chalk.underline('files')} [options]`)}
+
+    ${display.section('Options:')}
+
+      -h, --help            Usage information    ${display.subtle(false)}
+      -t, --traces          Save traces          ${display.subtle(false)}
+      -r, --reports         Save reports         ${display.subtle(false)}
+      -o ${display.emphasis('dir')}, --output=${display.emphasis('dir')}  Output directory     ${display.subtle('.speedracer')}
+      -p, --port            Tracing server port  ${display.subtle(defaultFlags.port)}
+      --runner-port         Runner server port   ${display.subtle(defaultFlags.runnerPort)}
+      --timeout             Run timeout          ${display.subtle(defaultFlags.timeout)}
+
+    ${display.section('Examples:')}
+
+    ${display.subtle('–')} Race files in ${chalk.underline('perf')} directory:
+
+      ${chalk.cyan('$ speedracer')}
+
+    ${display.subtle('–')} Race files matching ${chalk.underline('perf/**/*.js')} glob:
+
+      ${chalk.cyan(`$ speedracer ${chalk.cyan('perf/**/*.js')}`)}
+
+    ${display.subtle('–')} Save traces and reports:
+
+      ${chalk.cyan('$ speedracer --reports --traces --output=./speedracer')}
+
+  `
+}, {
   string: ['output'],
   boolean: ['help', 'traces', 'reports'],
   alias: {
@@ -38,50 +75,8 @@ const argv = minimist(process.argv.slice(2), {
     output: 'o',
     port: 'p'
   },
-  default: {
-    'output': path.join(process.cwd(), '.speedracer'),
-    'port': 3000,
-    'runner-port': 3001,
-    'timeout': 5000
-  }
+  default: defaultFlags
 })
-
-/* eslint-disable */
-const help = () => console.log(`
-  ${display.logo()}
-
-  ${chalk.red(`speedracer ${chalk.underline('files')} [options]`)}
-
-  ${display.section('Options:')}
-
-    -h, --help            Usage information    ${display.subtle('false')}
-    -t, --traces          Save traces          ${display.subtle(argv.t)}
-    -r, --reports         Save reports         ${display.subtle(argv.r)}
-    -o ${display.emphasis('dir')}, --output=${display.emphasis('dir')}  Output directory     ${display.subtle('.speedracer')}
-    -p, --port            Tracing server port  ${display.subtle(argv.p)}
-    --runner-port         Runner server port   ${display.subtle(argv.rp)}
-    --timeout             Run timeout          ${display.subtle(argv.timeout)}
-
-  ${display.section('Examples:')}
-
-  ${display.subtle('–')} Race files in ${chalk.underline('perf')} directory:
-
-    ${chalk.cyan('$ speedracer')}
-
-  ${display.subtle('–')} Race files matching ${chalk.underline('perf/**/*.js')} glob:
-
-    ${chalk.cyan(`$ speedracer ${chalk.cyan('perf/**/*.js')}`)}
-
-  ${display.subtle('–')} Save traces and reports:
-
-    ${chalk.cyan('$ speedracer --reports --traces --output=./speedracer')}
-`)
-/* eslint-enable */
-
-if (argv.help) {
-  help()
-  process.exit(0)
-}
 
 const header = () => console.log('')
 
@@ -107,10 +102,10 @@ series([
   () => startServer({
     baseDir: process.cwd(),
     port: baton.options.port,
-    clientPort: baton.options['runner-port']
+    clientPort: baton.options.runnerPort
   }),
   () => createRunnerServer({
-    port: baton.options['runner-port']
+    port: baton.options.runnerPort
   }),
   () => createDriver({
     port: baton.options.port
@@ -175,4 +170,4 @@ pipe({ files, options, modules: {}}, [
   display.showCursor
 ], error)
 
-run(argv._, argv)
+run(argv.input, argv.flags)
