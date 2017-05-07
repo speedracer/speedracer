@@ -29,8 +29,7 @@ checkForUpdate()
 const defaultFlags = {
   output: path.join(process.cwd(), '.speedracer'),
   port: 3000,
-  runnerPort: 3001,
-  timeout: 5000
+  runnerPort: 3001
 }
 
 const argv = meow({
@@ -43,12 +42,9 @@ const argv = meow({
     ${display.section('Options:')}
 
       -h, --help            Usage information    ${display.subtle(false)}
-      -t, --traces          Save traces          ${display.subtle(false)}
-      -r, --reports         Save reports         ${display.subtle(false)}
       -o ${display.emphasis('dir')}, --output=${display.emphasis('dir')}  Output directory     ${display.subtle('.speedracer')}
       -p, --port            Tracing server port  ${display.subtle(defaultFlags.port)}
       --runner-port         Runner server port   ${display.subtle(defaultFlags.runnerPort)}
-      --timeout             Run timeout          ${display.subtle(defaultFlags.timeout)}
 
     ${display.section('Examples:')}
 
@@ -90,9 +86,8 @@ const prepare = ({ files, options }) => {
     throw new Error('No files to trace found!')
   }
 
-  if (options.traces || options.reports) {
-    mkdirp.sync(options.output)
-  }
+  // create output dir
+  mkdirp.sync(options.output)
 }
 
 // TODO: check what happens if one fails, how can we cleanup the others?
@@ -134,15 +129,9 @@ waterfall([
   () => mapSeries(files, file =>
     traceFile(file, modules)
       .then(runs => mapSeries(runs, run => {
-        if (options.traces) {
-          run.saveTrace(options.output)
-        }
-
+        run.saveTrace(options.output)
         run.createReport()
-        if (options.reports) {
-          run.saveReport(options.output)
-        }
-
+        run.saveReport(options.output)
         return run
       }))
   ),
