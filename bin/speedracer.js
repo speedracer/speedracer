@@ -5,7 +5,6 @@ const path = require('path')
 
 // Packages
 const chalk = require('chalk')
-const eachSeries = require('p-each-series')
 const mapSeries = require('p-map-series')
 const loudRejection = require('loud-rejection')
 const minimist = require('minimist')

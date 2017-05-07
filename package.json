@@ -35,7 +35,6 @@
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
     "ms": "^1.0.0",
-    "p-each-series": "^1.0.0",
     "p-map-series": "^1.0.0",
     "p-series": "^1.0.0",
     "p-waterfall": "^1.0.0",
