@@ -1,6 +1,6 @@
 import run from 'speedracer'
 
-run('search 10e4 first primes', r => {
+run('search 10e4 first primes very long', r => {
   const isPrime = num => {
     if (num < 2) return false
 
@@ -24,7 +24,7 @@ run('search 10e4 first primes', r => {
   searchPrimes(10e4)
 })
 
-run('render loop', r => {
+run('render 600 frames', r => {
   return new Promise(resolve => {
     const colors = ['blue', 'white', 'red']
     let frame = 0

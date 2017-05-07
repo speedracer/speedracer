@@ -6,20 +6,23 @@ const path = require('path')
 // Packages
 const chalk = require('chalk')
 const eachSeries = require('p-each-series')
+const mapSeries = require('p-map-series')
 const loudRejection = require('loud-rejection')
 const minimist = require('minimist')
 const mkdirp = require('mkdirp')
 const series = require('p-series')
+const waterfall = require('p-waterfall')
 
 // Ours
 const checkForUpdate = require('../lib/check-for-update')
 const createDriver = require('../lib/driver')
+const createReporter = require('../lib/reporter')
 const createRunnerServer = require('../lib/runner-server')
 const display = require('../lib/display')
 const launchChrome = require('../lib/chrome-launcher')
 const startServer = require('../lib/server')
 const traceFile = require('../lib/trace-file')
-const { forEachProp, pipe } = require('../lib/.internal/util')
+const { flat, forEachProp, pipe } = require('../lib/.internal/util')
 
 const DEBUG = process.env.DEBUG
 
@@ -50,7 +53,7 @@ const help = () => console.log(`
 
   ${chalk.red(`speedracer ${chalk.underline('files')} [options]`)}
 
-  ${display.section('Options')}
+  ${display.section('Options:')}
 
     -h, --help            Usage information    ${display.subtle('false')}
     -t, --traces          Save traces          ${display.subtle(argv.t)}
@@ -60,7 +63,7 @@ const help = () => console.log(`
     --runner-port         Runner server port   ${display.subtle(argv.rp)}
     --timeout             Run timeout          ${display.subtle(argv.timeout)}
 
-  ${display.section('Examples')}
+  ${display.section('Examples:')}
 
   ${display.subtle('–')} Race files in ${chalk.underline('perf')} directory:
 
@@ -81,11 +84,12 @@ if (argv.help) {
   process.exit(0)
 }
 
-const header = () => console.log(`
-  ${display.logo()}
-`)
+const header = () => console.log('')
 
-const footer = () => console.log('')
+const footer = () => console.log('\n')
+
+const cleanup = ({ modules }) =>
+forEachProp(modules, m => { if (m && m.close) m.close() })
 
 const prepare = ({ files, options }) => {
   if (files.length === 0) {
@@ -111,50 +115,65 @@ series([
   }),
   () => createDriver({
     port: baton.options.port
-  })
+  }),
+  () => createReporter(DEBUG ? 'noop' : 'compact')
 ]).then(modules => {
   baton.modules = {
     chrome: modules[0],
     server: modules[1],
     runner: modules[2],
-    driver: modules[3]
+    driver: modules[3],
+    reporter: modules[4]
   }
+
+  process.on('SIGINT', () => {
+    cleanup(baton)
+    display.showCursor()
+    process.stdout.write('\n')
+    process.exit()
+  })
 })
 
 const runFiles = ({ files, options, modules }) =>
-eachSeries(files, file =>
-  traceFile(file, modules.runner, modules.driver)
-    .then(runs => eachSeries(runs, run => {
-      if (options.traces) {
-        run.saveTrace(options.output)
-      }
+waterfall([
+  () => modules.reporter.start(files),
+  () => mapSeries(files, file =>
+    traceFile(file, modules)
+      .then(runs => mapSeries(runs, run => {
+        if (options.traces) {
+          run.saveTrace(options.output)
+        }
 
-      run.createReport()
-      if (options.reports) {
-        run.saveReport(options.output)
-      }
-    }))
-)
+        run.createReport()
+        if (options.reports) {
+          run.saveReport(options.output)
+        }
 
-const cleanup = ({ modules }) =>
-forEachProp(modules, m => { if (m) m.close() })
+        return run
+      }))
+  ),
+  runs => modules.reporter.finish(flat(runs))
+])
 
 const error = (err, baton) => {
   console.error(chalk.red(err.message))
   if (DEBUG) console.error(err.stack)
   cleanup(baton)
   footer()
+  display.showCursor()
   process.exit(1)
 }
 
 const run = (files, options) =>
 pipe({ files, options, modules: {}}, [
+  display.hideCursor,
   header,
   prepare,
   initialize,
   runFiles,
   cleanup,
-  footer
+  footer,
+  display.showCursor
 ], error)
 
 run(argv._, argv)
