@@ -4,7 +4,6 @@ import sinon from 'sinon'
 global.WebSocket = class WebSocket {
   constructor() {
     setImmediate(() => this.onopen())
-
     this.send = sinon.spy(this.send)
   }
 
@@ -14,4 +13,6 @@ global.WebSocket = class WebSocket {
     payload = JSON.stringify(payload)
     this.onmessage({ data: payload })
   }
+
+  close() {}
 }

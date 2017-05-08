@@ -1,19 +1,18 @@
 import run from 'speedracer'
 
-const colors = ['blue', 'white', 'red']
-
-let frame = 0
-
-run.cb('alternate body background', r => {
-  const render = () => {
-    if (frame < 600) {
-      requestAnimationFrame(render)
+run('alternate body background', r => {
+  return new Promise(resolve => {
+    const colors = ['blue', 'white', 'red']
+    let frame = 0
+    const render = () => {
+      if (frame < 60) {
+        requestAnimationFrame(render)
+      }
+      else {
+        resolve()
+      }
+      document.body.style.backgroundColor = colors[frame++ % colors.length]
     }
-    else {
-      r.end()
-    }
-
-    document.body.style.backgroundColor = colors[frame++ % colors.length]
-  }
-  render()
+    render()
+  })
 })

@@ -23,13 +23,16 @@ Array [
 exports[`trace a file 1`] = `
 Array [
   Array [
-    "tracing started",
+    Object {
+      "bufferUsage": 0.01,
+      "collectedEvents": 0,
+    },
   ],
   Array [
-    "buffer usage: 1.00%",
-  ],
-  Array [
-    "tracing complete",
+    Object {
+      "bufferUsage": 0.01,
+      "collectedEvents": 0,
+    },
   ],
 ]
 `;

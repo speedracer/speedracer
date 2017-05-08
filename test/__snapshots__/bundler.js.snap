@@ -33,6 +33,7 @@ class RunnerClient {
     }
     else {
       this.send('file:end');
+      this.ws.close();
     }
   }
 
@@ -125,6 +126,7 @@ class RunnerClient {
     }
     else {
       this.send('file:end');
+      this.ws.close();
     }
   }
 

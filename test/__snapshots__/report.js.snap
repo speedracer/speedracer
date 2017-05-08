@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`report first paint 1`] = `undefined`;
+
+exports[`report fps 1`] = `undefined`;
+
+exports[`report profiling 1`] = `
+Object {
+  "categories": Object {
+    "painting": 8.899000406265259,
+    "rendering": 10.437999486923218,
+    "scripting": 13.000999689102173,
+  },
+  "events": Object {
+    "Animation Frame Fired": 8.126000165939331,
+    "Composite Layers": 6.616000294685364,
+    "JS Frame": 4.82599949836731,
+    "Paint": 2.283000111579895,
+    "Recalculate Style": 4.758999943733215,
+    "Run Microtasks": 0.04900002479553223,
+    "Update Layer Tree": 5.678999543190002,
+  },
+  "functions": Object {
+    "CompositeLayers": 6.616000294685364,
+    "FireAnimationFrame": 8.126000165939331,
+    "Paint": 2.283000111579895,
+    "RunMicrotasks": 0.04900002479553223,
+    "UpdateLayerTree": 5.678999543190002,
+    "UpdateLayoutTree": 4.758999943733215,
+    "f:@": 0.12800002098083496,
+    "f:render@24": 2.303999662399292,
+    "f:requestAnimationFrame@": 1.7019997835159302,
+    "f:send@": 0.026999950408935547,
+    "f:startRun@24": 0.20200002193450928,
+    "f:ws.onmessage@24": 0.4630000591278076,
+  },
+}
+`;
