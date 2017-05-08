@@ -15,5 +15,4 @@ notifications:
   email: false
 node_js:
   - '6'
-  - '5'
 after_success: npm run coverage

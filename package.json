@@ -6,7 +6,7 @@
   "license": "MIT",
   "repository": "ngryman/speedracer",
   "engines": {
-    "node": ">=5"
+    "node": ">=6"
   },
   "files": [
     "bin",
