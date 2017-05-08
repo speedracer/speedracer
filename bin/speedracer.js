@@ -12,13 +12,13 @@ const waterfall = require('p-waterfall')
 
 // Ours
 const checkForUpdate = require('../lib/check-for-update')
+const createDirector = require('../lib/director')
 const createDriver = require('../lib/driver')
 const createReporter = require('../lib/reporter')
 const createRunnerServer = require('../lib/runner-server')
 const display = require('../lib/display')
 const launchChrome = require('../lib/chrome-launcher')
 const startServer = require('../lib/server')
-const traceFile = require('../lib/trace-file')
 const { flat, forEachProp, pipe } = require('../lib/.internal/util')
 
 const DEBUG = process.env.DEBUG
@@ -110,6 +110,8 @@ series([
     reporter: modules[4]
   }
 
+  baton.modules.director = createDirector(baton.modules)
+
   process.on('SIGINT', () => {
     cleanup(baton)
     display.showCursor()
@@ -122,7 +124,7 @@ const runFiles = ({ files, options, modules }) =>
 waterfall([
   () => modules.reporter.start(files),
   () => mapSeries(files, file =>
-    traceFile(file, modules)
+    modules.director.runFile(file)
       .then(runs => mapSeries(runs, run => {
         if (options.traces) {
           run.saveTrace(options.output)
