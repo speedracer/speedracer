@@ -7,7 +7,6 @@ const path = require('path')
 const chalk = require('chalk')
 const mapSeries = require('p-map-series')
 const meow = require('meow')
-const mkdirp = require('mkdirp')
 const series = require('p-series')
 const waterfall = require('p-waterfall')
 
@@ -29,6 +28,8 @@ checkForUpdate()
 const defaultFlags = {
   output: path.join(process.cwd(), '.speedracer'),
   port: 3000,
+  traces: true,
+  reports: true,
   runnerPort: 3001
 }
 
@@ -45,29 +46,25 @@ const argv = meow({
       -h, --help            Usage information    ${display.subtle(false)}
       -o ${display.emphasis('dir')}, --output=${display.emphasis('dir')}  Output directory     ${display.subtle('.speedracer')}
       -p, --port            Tracing server port  ${display.subtle(defaultFlags.port)}
+      --no-traces           Don't save traces    ${display.subtle(!defaultFlags.traces)}
+      --no-reports          Don't save reports   ${display.subtle(!defaultFlags.reports)}
       --runner-port         Runner server port   ${display.subtle(defaultFlags.runnerPort)}
 
     ${display.section('Examples:')}
 
-    ${display.subtle('–')} Race files in ${chalk.underline('perf')} directory:
+    ${display.subtle('–')} Run files recursively in ${chalk.underline('perf')} directory:
 
-      ${chalk.cyan('$ speedracer')}
+      ${chalk.cyan('$ speedracer perf/**')}
 
-    ${display.subtle('–')} Race files matching ${chalk.underline('perf/**/*.js')} glob:
+    ${display.subtle('–')} Save only reports to ${chalk.underline('reports')} directory:
 
-      ${chalk.cyan(`$ speedracer ${chalk.cyan('perf/**/*.js')}`)}
-
-    ${display.subtle('–')} Save traces and reports:
-
-      ${chalk.cyan('$ speedracer --reports --traces --output=./speedracer')}
+      ${chalk.cyan(`$ speedracer perf/*.js --output=reports --no-traces`)}
   `
 }, {
   string: ['output'],
   boolean: ['help', 'traces', 'reports'],
   alias: {
     help: 'h',
-    traces: 't',
-    reports: 'r',
     output: 'o',
     port: 'p'
   },
@@ -86,9 +83,6 @@ const prepare = ({ files, options }) => {
   if (files.length === 0) {
     throw new Error('No files to trace found!')
   }
-
-  // create output dir
-  mkdirp.sync(options.output)
 }
 
 // TODO: check what happens if one fails, how can we cleanup the others?
@@ -130,9 +124,14 @@ waterfall([
   () => mapSeries(files, file =>
     traceFile(file, modules)
       .then(runs => mapSeries(runs, run => {
-        run.saveTrace(options.output)
+        if (options.traces) {
+          run.saveTrace(options.output)
+        }
+
         run.createReport()
-        run.saveReport(options.output)
+        if (options.reports) {
+          run.saveReport(options.output)
+        }
         return run
       }))
   ),

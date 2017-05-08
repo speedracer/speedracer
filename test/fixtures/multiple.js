@@ -24,12 +24,12 @@ run('search 10e4 first primes very long', r => {
   searchPrimes(10e4)
 })
 
-run('render 600 frames', r => {
+run('render 60 frames', r => {
   return new Promise(resolve => {
     const colors = ['blue', 'white', 'red']
     let frame = 0
     const render = () => {
-      if (frame < 600) {
+      if (frame < 60) {
         requestAnimationFrame(render)
       }
       else {
