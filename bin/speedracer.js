@@ -11,10 +11,10 @@ const display = require('../lib/display')
 checkForUpdate()
 
 const commands = [
-  'trace',
-  'analyze'
+  'run',
+  'show'
 ]
-const defaultCommand = 'trace'
+const defaultCommand = 'run'
 
 const { argv } = process
 
@@ -25,8 +25,8 @@ const help = () => console.log(`
 
   ${display.section('Commands:')}
 
-    trace    ${display.subtle('default')}
-    analyze
+    run     Run files producing artifacts  ${display.subtle('default')}
+    show    Show a report
 
 `)
 

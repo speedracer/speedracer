@@ -36,7 +36,7 @@ const argv = meow({
   help: `
     ${display.logo()}
 
-    ${chalk.red(`speedracer trace ${chalk.underline('files')} [options]`)}
+    ${chalk.red(`speedracer run ${chalk.underline('files')} [options]`)}
 
     ${display.section('Options:')}
 
@@ -78,7 +78,7 @@ forEachProp(modules, m => { if (m && m.close) m.close() })
 
 const prepare = ({ files, options }) => {
   if (files.length === 0) {
-    throw new Error('No files to trace found!')
+    throw new Error('No files to run found!')
   }
 }
 
