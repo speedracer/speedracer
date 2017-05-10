@@ -5,6 +5,7 @@ const path = require('path')
 
 // Packages
 const chalk = require('chalk')
+const globby = require('globby')
 const mapSeries = require('p-map-series')
 const meow = require('meow')
 const series = require('p-series')
@@ -51,7 +52,7 @@ const argv = meow({
 
     ${display.subtle('–')} Run files recursively in ${chalk.underline('perf')} directory:
 
-      ${chalk.cyan('$ speedracer perf/**')}
+      ${chalk.cyan('$ speedracer')}
 
     ${display.subtle('–')} Save only reports to ${chalk.underline('reports')} directory:
 
@@ -76,10 +77,19 @@ const footer = () => console.log('\n')
 const cleanup = ({ modules }) =>
 forEachProp(modules, m => { if (m && m.close) m.close() })
 
-const prepare = ({ files, options }) => {
-  if (files.length === 0) {
-    throw new Error('No files to run found!')
+const prepare = baton => {
+  // set default directory to perf
+  if (baton.files.length === 0) {
+    baton.files = ['perf/**/*.js']
   }
+
+  // return matching paths
+  return globby(baton.files).then(paths => {
+    if (paths.length === 0) {
+      throw new Error('No files to run found!')
+    }
+    baton.files = paths
+  })
 }
 
 // TODO: check what happens if one fails, how can we cleanup the others?
