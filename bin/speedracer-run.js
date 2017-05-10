@@ -83,10 +83,10 @@ const prepare = baton => {
     baton.files = ['perf/**/*.js']
   }
 
-  // return matching paths
+  // return matching files
   return globby(baton.files).then(paths => {
     if (paths.length === 0) {
-      throw new Error('No files to run found!')
+      throw new Error('No files found!')
     }
     baton.files = paths
   })

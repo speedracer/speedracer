@@ -2,13 +2,14 @@
 
 // Packages
 const chalk = require('chalk')
+const globby = require('globby')
 const mapSeries = require('p-map-series')
 const meow = require('meow')
 
 // Ours
 const { pipe } = require('../lib/.internal/util')
-const display = require('../lib/display')
 const { loadReport } = require('../lib/report')
+const display = require('../lib/display')
 const showReport = require('../lib/show-report')
 
 const DEBUG = process.env.DEBUG
@@ -47,10 +48,19 @@ const header = () => console.log('')
 
 const footer = () => console.log('\n')
 
-const prepare = ({ files, options }) => {
-  if (files.length === 0) {
-    throw new Error('No reports to show found!')
+const prepare = (baton) => {
+  // set default directory to .speedracer
+  if (baton.files.length === 0) {
+    baton.files = ['.speedracer/**/*.speedracer']
   }
+
+  // return matching files
+  return globby(baton.files).then(paths => {
+    if (paths.length === 0) {
+      throw new Error('No reports found!')
+    }
+    baton.files = paths
+  })
 }
 
 const showFiles = ({ files, options }) =>
