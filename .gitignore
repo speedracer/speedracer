@@ -1,5 +1,6 @@
 # project
 .nyc_output
+coverage
 .todo
 .speedracer
 
