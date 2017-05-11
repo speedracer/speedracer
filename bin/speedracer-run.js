@@ -26,6 +26,7 @@ const DEBUG = process.env.DEBUG
 const defaultFlags = {
   output: path.join(process.cwd(), '.speedracer'),
   port: 3000,
+  timeout: 3000,
   traces: true,
   reports: true,
   runnerPort: 3001
@@ -43,6 +44,7 @@ const argv = meow({
 
       -h, --help              Usage information        ${display.subtle(false)}
       -o ${display.emphasis('dir')}, --output=${display.emphasis('dir')}    Output directory         ${display.subtle('.speedracer')}
+      -t, --timeout           Run timeout              ${display.subtle(defaultFlags.timeout)}
       -p, --port              Tracing server port      ${display.subtle(defaultFlags.port)}
       --no-traces             Don't save traces        ${display.subtle(!defaultFlags.traces)}
       --no-reports            Don't save reports       ${display.subtle(!defaultFlags.reports)}
@@ -65,6 +67,7 @@ const argv = meow({
   alias: {
     help: 'h',
     output: 'o',
+    timeout: 't',
     port: 'p'
   },
   default: defaultFlags
@@ -118,7 +121,7 @@ series([
     reporter: modules[4]
   }
 
-  baton.modules.director = createDirector(baton.modules)
+  baton.modules.director = createDirector(baton.modules, baton.options)
 
   process.on('SIGINT', () => {
     cleanup(baton)
