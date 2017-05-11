@@ -1,7 +1,7 @@
 sudo: false
 language: node_js
 before_install:
-  - export SPEEDRACER_CHROME=/usr/bin/chromium-browser
+  - export SPEEDRACER_CHROME=chromium-browser
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
 cache:
