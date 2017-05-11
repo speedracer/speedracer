@@ -6,6 +6,8 @@ import test from 'ava'
 import './helpers/mock-ws'
 import { RunnerClient } from '../lib/runner-client'
 
+const CI = !!process.env.CI
+
 const checkMessageSequence = (t, client) => {
   t.snapshot(client.ws.send.args)
 }
@@ -14,11 +16,11 @@ test.cb('execute a run', t => {
   const fn = sinon.spy()
   const client = new RunnerClient()
   client.enqueueRun('foo', fn)
-  setImmediate(() => {
+  setTimeout(() => {
     t.true(fn.calledOnce)
     checkMessageSequence(t, client)
     t.end()
-  })
+  }, CI ? 100 : 0)
 })
 
 test.cb('execute an async run', t => {
@@ -30,7 +32,7 @@ test.cb('execute an async run', t => {
     t.true(fn.calledOnce)
     checkMessageSequence(t, client)
     t.end()
-  }, 10)
+  }, CI ? 100 : 10)
 })
 
 test.cb('execute multiple runs in band', t => {
@@ -48,7 +50,7 @@ test.cb('execute multiple runs in band', t => {
     t.true(fn3.calledAfter(fn2))
     checkMessageSequence(t, client)
     t.end()
-  }, 10)
+  }, CI ? 100 :10)
 })
 
 test.cb('handle exception in a run', t => {
@@ -57,8 +59,8 @@ test.cb('handle exception in a run', t => {
   client.enqueueRun('foo', fnThrow, false)
   client.enqueueRun('bar', fnThrow, true)
   client.enqueueRun('baz', () => {}, false)
-  setImmediate(() => {
+  setTimeout(() => {
     checkMessageSequence(t, client)
     t.end()
-  })
+  }, CI ? 100 : 0)
 })
