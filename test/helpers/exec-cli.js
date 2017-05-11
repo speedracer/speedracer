@@ -1,9 +1,23 @@
 // Native
 import { exec } from 'child_process'
 
-export default (command, args = '') =>
+const CI = !!process.env.CI
+
+export default (subCommand, args = '') =>
 new Promise((resolve, reject) => {
-  exec(`../../bin/speedracer.js ${command} ${args}`, {
+  const command = [
+    '../../bin/speedracer.js',
+    subCommand,
+    args
+  ]
+
+  if (CI) {
+    command.push('--chrome-flags="--no-sandbox"')
+    command.push('--no-headless')
+    command.push('--timeout=10000')
+  }
+
+  exec(command.join(' '), {
     cwd: 'test/fixtures'
   }, (err, stdout, stderr) => {
     if (err) return reject(err)
