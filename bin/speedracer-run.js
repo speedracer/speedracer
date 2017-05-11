@@ -128,6 +128,7 @@ series([
 
   baton.modules.director = createDirector(baton.modules, baton.options)
 
+  /* istanbul ignore next */
   process.on('SIGINT', () => {
     cleanup(baton)
     display.showCursor()
@@ -150,6 +151,7 @@ waterfall([
         if (options.reports) {
           run.saveReport(options.output)
         }
+
         return run
       }))
   ),
@@ -158,6 +160,7 @@ waterfall([
 
 const error = (err, baton) => {
   console.error(chalk.red(err.message))
+  /* istanbul ignore if */
   if (DEBUG) console.error(err.stack)
   cleanup(baton)
   footer()
