@@ -29,7 +29,8 @@ const defaultFlags = {
   timeout: 3000,
   traces: true,
   reports: true,
-  runnerPort: 3001
+  runnerPort: 3001,
+  headless: true
 }
 
 /* eslint-disable */
@@ -50,6 +51,7 @@ const argv = meow({
       --no-reports            Don't save reports       ${display.subtle(!defaultFlags.reports)}
       --runner-port           Runner server port       ${display.subtle(defaultFlags.runnerPort)}
       --chrome-flags          Additional Chrome flags
+      --no-headless           Run Chrome visually
 
     ${display.section('Examples:')}
 
@@ -63,7 +65,7 @@ const argv = meow({
   `
 }, {
   string: ['output', 'chromeFlags'],
-  boolean: ['help', 'traces', 'reports'],
+  boolean: ['help', 'traces', 'reports', 'headless'],
   alias: {
     help: 'h',
     output: 'o',
@@ -99,7 +101,10 @@ const prepare = baton => {
 // TODO: check what happens if one fails, how can we cleanup the others?
 const initialize = baton =>
 series([
-  () => launchChrome({ flags: baton.options.chromeFlags }),
+  () => launchChrome({
+    flags: baton.options.chromeFlags,
+    headless: baton.options.headless
+  }),
   () => startServer({
     baseDir: process.cwd(),
     port: baton.options.port,
