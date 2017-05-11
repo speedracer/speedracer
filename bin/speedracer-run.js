@@ -41,12 +41,13 @@ const argv = meow({
 
     ${display.section('Options:')}
 
-      -h, --help            Usage information    ${display.subtle(false)}
-      -o ${display.emphasis('dir')}, --output=${display.emphasis('dir')}  Output directory     ${display.subtle('.speedracer')}
-      -p, --port            Tracing server port  ${display.subtle(defaultFlags.port)}
-      --no-traces           Don't save traces    ${display.subtle(!defaultFlags.traces)}
-      --no-reports          Don't save reports   ${display.subtle(!defaultFlags.reports)}
-      --runner-port         Runner server port   ${display.subtle(defaultFlags.runnerPort)}
+      -h, --help              Usage information        ${display.subtle(false)}
+      -o ${display.emphasis('dir')}, --output=${display.emphasis('dir')}    Output directory         ${display.subtle('.speedracer')}
+      -p, --port              Tracing server port      ${display.subtle(defaultFlags.port)}
+      --no-traces             Don't save traces        ${display.subtle(!defaultFlags.traces)}
+      --no-reports            Don't save reports       ${display.subtle(!defaultFlags.reports)}
+      --runner-port           Runner server port       ${display.subtle(defaultFlags.runnerPort)}
+      --chrome-flags          Additional Chrome flags
 
     ${display.section('Examples:')}
 
@@ -59,7 +60,7 @@ const argv = meow({
       ${chalk.cyan(`$ speedracer perf/*.js --output=reports --no-traces`)}
   `
 }, {
-  string: ['output'],
+  string: ['output', 'chromeFlags'],
   boolean: ['help', 'traces', 'reports'],
   alias: {
     help: 'h',
@@ -95,7 +96,7 @@ const prepare = baton => {
 // TODO: check what happens if one fails, how can we cleanup the others?
 const initialize = baton =>
 series([
-  () => launchChrome(),
+  () => launchChrome({ flags: baton.options.chromeFlags }),
   () => startServer({
     baseDir: process.cwd(),
     port: baton.options.port,

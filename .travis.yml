@@ -7,6 +7,7 @@ before_install:
 cache:
   directories:
     - node_modules
+    - chrome-linux
 branches:
   only:
     - master
