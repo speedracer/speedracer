@@ -12,7 +12,7 @@ checkForUpdate()
 
 const commands = [
   'run',
-  'show'
+  'display'
 ]
 const defaultCommand = 'run'
 
@@ -25,8 +25,8 @@ const help = () => console.log(`
 
   ${display.section('Commands:')}
 
-    run     Run files producing artifacts  ${display.subtle('default')}
-    show    Show a report
+    run        Run files  ${display.subtle('default')}
+    display    Display reports
 
 `)
 

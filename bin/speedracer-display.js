@@ -10,7 +10,7 @@ const meow = require('meow')
 const { pipe } = require('../lib/.internal/util')
 const { loadReport } = require('../lib/report')
 const display = require('../lib/display')
-const showReport = require('../lib/show-report')
+const displayReport = require('../lib/display-report')
 
 const DEBUG = process.env.DEBUG
 
@@ -20,7 +20,7 @@ const argv = meow({
   help: `
     ${display.logo()}
 
-    ${chalk.red(`speedracer show ${chalk.underline('reports')}`)}
+    ${chalk.red(`speedracer display ${chalk.underline('reports')}`)}
 
     ${display.section('Options:')}
 
@@ -28,13 +28,13 @@ const argv = meow({
 
     ${display.section('Examples:')}
 
-    ${display.subtle('–')} Show ${chalk.underline('.speedracer/high-cpu.speedracer')} report:
+    ${display.subtle('–')} Display ${chalk.underline('.speedracer/high-cpu.speedracer')} report:
 
-      ${chalk.cyan('$ speedracer show .speedracer/high-cpu.speedracer')}
+      ${chalk.cyan('$ speedracer display .speedracer/high-cpu.speedracer')}
 
-    ${display.subtle('–')} Show reports recursively in ${chalk.underline('.speedracer')} directory:
+    ${display.subtle('–')} Display reports recursively in ${chalk.underline('.speedracer')} directory:
 
-      ${chalk.cyan('$ speedracer show .speedracer/**/*')}
+      ${chalk.cyan('$ speedracer display .speedracer/**/*')}
   `
 }, {
   boolean: ['help'],
@@ -63,12 +63,12 @@ const prepare = (baton) => {
   })
 }
 
-const showFiles = ({ files, options }) =>
+const displayFiles = ({ files, options }) =>
 mapSeries(files, file => {
   // only process .speedracer extension
   if (!file.endsWith('.speedracer')) return
 
-  return loadReport(file).then(showReport)
+  return loadReport(file).then(displayReport)
 })
 
 const error = (err, baton) => {
@@ -82,7 +82,7 @@ const run = (files, options) =>
 pipe({ files, options }, [
   header,
   prepare,
-  showFiles,
+  displayFiles,
   footer
 ], error)
 
