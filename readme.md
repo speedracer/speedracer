@@ -50,7 +50,7 @@ Speed Racer needs **Google Chrome** to run your files. It will run it headlessly
 
 Speed Racer comes with two commands right now:
  - `run`: collect performance metrics and save them.
- - `show`: display a summary of generated reports.
+ - `display`: display a summary of generated reports.
 
 ### Create races
 
@@ -62,19 +62,19 @@ Here is an example of a file containing a race:
 import race from 'speedracer'
 
 race('my first race', () => {
-  // ... stuff to measure
+  // ... stuff to profile
 })
 ```
 
-You can define as many race as you want per file, Speed Racer will collect and run them sequentially.
+You can define as many races as you want per file, Speed Racer will collect and run them sequentially.
 
-You can also define asynchronous races like this:
+You can also define asynchronous races like so:
 ```js
 import race from 'speedracer'
 
 race('my first async race', () =>
 new Promise(resolve => {
-  // ... seuff to measure
+  // ... stuff to profile
   resolve()
 })
 ```
@@ -86,7 +86,7 @@ new Promise(resolve => {
 Then you need to collect metrics!
 
 For each race, Speed Racer will produce two artifacts:
- - a **trace**: raw dump of Google Chrome tracing events, it contains a lot of detailed metrics about your code execution.
+ - a **trace**: a raw dump of Google Chrome tracing events, it contains a lot of detailed metrics about your race.
  - a **report**: a report created by Speed Racer from those events, it summarizes important metrics.
 
 Those artifacts will be saved in the `.speedracer` directory by default.
@@ -105,7 +105,7 @@ For more details, type `speedracer display --help`.
 ## Go further
 
 Speed Racer is still a baby so it does not provide advanced analysis yet, just a basic summary. But it has several goals:
- - **regression testing**: compare runs with the previous ones and report how it's faster/slower.
+ - **regression testing**: compare runs over time and report how it's faster/slower.
  - **benchmarking**: compare several races to see which is the best.
  - **analysis**: give precise insights of what is slow and why.
  - **auditing**: give advices on how to improve performance.
@@ -114,7 +114,7 @@ If you want to use Speed Racer for one of this use cases, you can leverage it an
 
 ### Traces
 
-Traces are `json` files that are basically a **huge** array of events produced by Google Chrome. Those events give tons of informations about the overall performance of race. Here is the detail [format](https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/preview#heading=h.uxpopqvbjezh).
+Traces are `json` files with the `.trace.gz` extension. They are basically **huge** arrays of events produced by Google Chrome. Those events give tons of informations about the overall performance of race. Here is the detail [format](https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/preview#heading=h.uxpopqvbjezh).
 
 Traces can be pretty big, so they are saved `gziped`.
 
@@ -138,3 +138,67 @@ $ gunzip render-60-frames.trace.gz
 ```
 
 2. Load it in Chrome Devtools and enjoy :tada:
+
+### Reports
+
+Reports are `json` files with the `.speedracer` extension. They provide a performance summary for a given race.
+
+Here is the format:
+```json
+{
+  "meta": {
+    "title": "render 60 frames",
+    "group": "test-fixtures-multiple",
+    "id": "render-60-frames"
+  },
+  "profiling": {
+    "categories": {
+      "scripting": 13.217000007629395,
+      "rendering": 11.370999991893768,
+      "painting": 9.248999938368797
+    },
+    "events": {
+      "Animation Frame Fired": 7.994999974966049,
+      "Composite Layers": 7.0119999796152115,
+      "Update Layer Tree": 6.503000020980835,
+      "JS Frame": 5.1060000360012054,
+      "Recalculate Style": 4.867999970912933,
+      "Paint": 2.236999958753586,
+      "Run Microtasks": 0.11599999666213989
+    },
+    "functions": {
+      "FireAnimationFrame": 7.994999974966049,
+      "CompositeLayers": 7.0119999796152115,
+      "UpdateLayerTree": 6.503000020980835,
+      "UpdateLayoutTree": 4.867999970912933,
+      "f:render@24": 2.32600000500679,
+      "Paint": 2.236999958753586,
+      "f:requestAnimationFrame@": 2.1010000109672546,
+      "f:ws.onmessage@24": 0.1940000057220459,
+      "f:finishRace@24": 0.15600000321865082,
+      "f:@": 0.1300000101327896,
+      "RunMicrotasks": 0.11599999666213989,
+      "f:Promise@": 0.10099999606609344,
+      "f:startRace@24": 0.09800000488758087
+    }
+  },
+  "rendering": {
+    "firstPaint": 0.00805,
+    "fps": {
+      "mean": 60.98,
+      "variance": 3.9,
+      "sd": 1.97,
+      "lo": 56.92,
+      "hi": 63.47
+    }
+  }
+}
+```
+
+You can display, analyze or compare them depending on your needs.
+
+---
+
+<p align="center">
+  :racing_car::boom: ............ :red_car::taxi::blue_car::police_car::fire_engine::minibus::truck::bus::articulated_lorry::tractor:
+</p>
