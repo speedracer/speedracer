@@ -26,11 +26,14 @@
 
 ---
 
-Speed Racer is a perf runner, like a test runner, but for performance :racing_car:. It executes scripts (*runs*) in Chrome (headlessly if possible) and produces reports on JavaScript execution, rendering and fps (more to come).
+Speed Racer is a performance runner, like a test runner, but for performance :racing_car:. It runs scripts (*races*) in Chrome (headlessly if possible) and produces detailed **traces** and **reports** on scripting, rendering and painting.
 
 <p align="center">
   <br><br>
-  <b>Have a :mag: on :package: <a href="//github.com/ngryman/speedracer/projects/1">0.2.0</a></b>
+  <b>
+    Have a :mag: on what's new in :package:
+    <a href="//github.com/ngryman/speedracer/projects/1">0.2.0</a>
+  </b>
   <br><br>
 </p>
 
@@ -40,139 +43,98 @@ Speed Racer is a perf runner, like a test runner, but for performance :racing_ca
 npm install -g speedracer
 ```
 
-Speed Racer needs Chrome to profile your files.
-Preferably, if you have Chrome Canary installed it will run it headlessly.
+Speed Racer needs **Google Chrome** to run your files. It will run it headlessly if it finds a proper intallation of Canary (Mac OS X only for now).
 
 
 ## Usage
 
-```sh
-$ speedracer -h
+Speed Racer comes with two commands right now:
+ - `run`: collect performance metrics and save them.
+ - `show`: display a summary of generated reports.
 
-  🏎 Speed Racer v0.1.0
+### Create races
 
-  speedracer files [options]
+A race can be seen as a unit test. It contains a piece of code that will be profiled by Speed Racer. Under the hood, it uses [Chrome DevTools protocol] to drive Chrome and collect traces.
+Races can import `es6` / `commonjs` modules and use most of `es6` features, depending on your version of Google Chrome: [es6 support](https://www.chromestatus.com/features)
 
-  Options:
-
-    -h, --help            Usage information  false
-    -t, --traces          Save traces        false
-    -r, --reports         Save reports       false
-    -o dir, --output=dir  Output directory   ./.speedracer
-
-  Examples:
-
-  – Race files in perf directory:
-
-    $ speedracer
-
-  – Race files matching perf/**/*.js glob:
-
-    $ speedracer perf/**/*.js
-
-  – Save traces and reports:
-
-    $ speedracer --reports --traces --output=./speedracer
-```
-
-## Runs
-
-Speed Racer serves all the scripts you specified, loads them into Chrome and traces them. It's done sequentially for now.
-
-### Scripts
-
-Scripts can leverage on Chrome native DOM and ES6 goodness without any external tools. If you want more details on what is available out-of-the-box here is a [list](https://www.chromestatus.com/features).
-
-You can use `import` and `require` in your scripts, Speed Racer will dynamically bundle and serve them.
-
-You can browse examples of scripts [here](https://github.com/ngryman/speedracer/tree/master/test/fixtures).
-
-### Runtime
-
-Scripts can control Speed Racer behavior using the provided runtime:
+Here is an example of a file containing a race:
 ```js
-import speedracer from 'speedracer'
-// ...
+import race from 'speedracer'
+
+race('my first race', () => {
+  // ... stuff to measure
+})
 ```
 
-#### `speedracer.end()`
+You can define as many race as you want per file, Speed Racer will collect and run them sequentially.
 
-TODO
+You can also define asynchronous races like this:
+```js
+import race from 'speedracer'
 
-*More methods to come*.
-
-## Reports
-
-Reports are `json` files that contain a performance summary of your run. They give you insights of what is taking time and why. 
-
-They can be useful to track performance regressions. You can save those reports and compare them with new ones before commiting changes. You will then know if the new changes affected performance in a some way.
-
-Here is the format:
-```json
-{
-  "name": "render-loop.js",
-  "profiling": {
-    "categories": {
-      "scripting": 59.44300004839897,
-      "rendering": 51.38299997150898,
-      "painting": 41.349999979138374,
-      "loading": 4.573000013828278
-    },
-    "events": {
-      "Animation Frame Fired": 39.61099997162819,
-      "Composite Layers": 32.80699998140335,
-      "Update Layer Tree": 27.93999993801117,
-      "Recalculate Style": 23.179000034928322,
-      "JS Frame": 15.728000089526176,
-      "Paint": 8.542999997735023,
-      "Parse HTML": 4.573000013828278,
-      "Evaluate Script": 3.408999979496002,
-      "Compile Script": 0.6950000077486038,
-      "Layout": 0.2639999985694885
-    },
-    "functions": {
-      "FireAnimationFrame": 39.61099997162819,
-      "CompositeLayers": 32.80699998140335,
-      "UpdateLayerTree": 27.93999993801117,
-      "UpdateLayoutTree": 23.179000034928322,
-      "f:requestAnimationFrame@": 8.663000077009201,
-      "Paint": 8.542999997735023,
-      "f:render@25": 6.45100000500679,
-      "ParseHTML": 4.573000013828278,
-      "EvaluateScript": 3.408999979496002,
-      "v8.compile": 0.6950000077486038,
-      "f:@24": 0.3190000057220459,
-      "f:@25": 0.29500000178813934,
-      "Layout": 0.2639999985694885
-    }
-  },
-  "firstPaint": 0.028327,
-  "fps": {
-    "mean": 60.2,
-    "variance": 1.6,
-    "sd": 1.26,
-    "lo": 55.66,
-    "hi": 65.97
-  }
-}
+race('my first async race', () =>
+new Promise(resolve => {
+  // ... seuff to measure
+  resolve()
+})
 ```
 
-## Traces
+[Chrome DevTools protocol]: https://chromedevtools.github.io/devtools-protocol/
 
-Speed Racer can also save traces of your runs. Traces contains events emitted by Chrome when your scripts are executed. Those events gives a bunch of informations about the overall performance of your scripts. Here is the detail [format](https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/preview#heading=h.uxpopqvbjezh).
+### Run races
 
-You can analyze them the way you want or simply load them in the Timeline/Performance tab of Chrome.
-Traces can be pretty big, so they are saved `gzip`.
+Then you need to collect metrics!
 
-### Load in Devtools
+For each race, Speed Racer will produce two artifacts:
+ - a **trace**: raw dump of Google Chrome tracing events, it contains a lot of detailed metrics about your code execution.
+ - a **report**: a report created by Speed Racer from those events, it summarizes important metrics.
 
-First you need to locate and decompress your trace.
+Those artifacts will be saved in the `.speedracer` directory by default.
+
+To run races, type `speedracer run perf/*.js` or simply `speedracer perf/*.js`. Note that it will run all `.js` files in the `perf` directory by default, so you can omit `perf/*.js` if you are using this directory.
+
+For more details, type `speedracer run --help`.
+You can browse examples [here](https://github.com/ngryman/speedracer/tree/master/test/fixtures).
+
+### Display reports
+
+Once the artifacts have been created, you can quickly display a summary report for each run. Type `speedracer display` to see all the reports or `speedracer display .speedracer/a-file-name/*` to see the reports of a specific file.
+
+For more details, type `speedracer display --help`.
+
+## Go further
+
+Speed Racer is still a baby so it does not provide advanced analysis yet, just a basic summary. But it has several goals:
+ - **regression testing**: compare runs with the previous ones and report how it's faster/slower.
+ - **benchmarking**: compare several races to see which is the best.
+ - **analysis**: give precise insights of what is slow and why.
+ - **auditing**: give advices on how to improve performance.
+
+If you want to use Speed Racer for one of this use cases, you can leverage it and analyze the traces and reports it produces. I would be glad to receive your feedback and ideas on the subject!
+
+### Traces
+
+Traces are `json` files that are basically a **huge** array of events produced by Google Chrome. Those events give tons of informations about the overall performance of race. Here is the detail [format](https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/preview#heading=h.uxpopqvbjezh).
+
+Traces can be pretty big, so they are saved `gziped`.
+
+You can analyze them the way you want or load them in the Timeline/Performance tab of Chrome like so:
+
+1. Locate and decompress your trace:
 
 ```sh
+# first you need to locate and decompress the trace
+
 $ cd .speedracer
 $ ls
-high-cup.trace.gz
-$ gunzip high-cup.trace
+text-fixtures-multiple
+$ cd text-fixtures-multiple
+$ ls
+render-60-frames.speedracer
+render-60-frames.trace.gz
+search-10e4-first-primes-very-long.speedracer
+search-10e4-first-primes-very-long.trace.gz
+$ gunzip render-60-frames.trace.gz
 ```
 
-Then you load it in Chrome Devtools and enjoy :tada:!
+2. Load it in Chrome Devtools and enjoy :tada:
