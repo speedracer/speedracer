@@ -32,7 +32,7 @@ Speed Racer is a performance runner, like a test runner, but for performance :ra
   <br><br>
   <b>
     Have a :mag: on what's new in :package:
-    <a href="//github.com/ngryman/speedracer/projects/1">0.2.0</a>
+    <a href="//github.com/ngryman/speedracer/releases/tag/v0.2.0">0.2.0</a>
   </b>
   <br><br>
 </p>
