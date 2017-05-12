@@ -195,3 +195,66 @@ Array [
   ],
 ]
 `;
+
+exports[`run a race 1`] = `
+Array [
+  Array [
+    "{\\"type\\":\\"file:start\\"}",
+  ],
+  Array [
+    "{\\"type\\":\\"race:start\\",\\"race\\":{\\"title\\":\\"foo\\"}}",
+  ],
+  Array [
+    "{\\"type\\":\\"race:finish\\",\\"race\\":{\\"title\\":\\"foo\\"}}",
+  ],
+  Array [
+    "{\\"type\\":\\"file:finish\\"}",
+  ],
+]
+`;
+
+exports[`run an async race 1`] = `
+Array [
+  Array [
+    "{\\"type\\":\\"file:start\\"}",
+  ],
+  Array [
+    "{\\"type\\":\\"race:start\\",\\"race\\":{\\"title\\":\\"foo\\"}}",
+  ],
+  Array [
+    "{\\"type\\":\\"race:finish\\",\\"race\\":{\\"title\\":\\"foo\\"}}",
+  ],
+  Array [
+    "{\\"type\\":\\"file:finish\\"}",
+  ],
+]
+`;
+
+exports[`run multiple races in band 1`] = `
+Array [
+  Array [
+    "{\\"type\\":\\"file:start\\"}",
+  ],
+  Array [
+    "{\\"type\\":\\"race:start\\",\\"race\\":{\\"title\\":\\"foo\\"}}",
+  ],
+  Array [
+    "{\\"type\\":\\"race:finish\\",\\"race\\":{\\"title\\":\\"foo\\"}}",
+  ],
+  Array [
+    "{\\"type\\":\\"race:start\\",\\"race\\":{\\"title\\":\\"bar\\"}}",
+  ],
+  Array [
+    "{\\"type\\":\\"race:finish\\",\\"race\\":{\\"title\\":\\"bar\\"}}",
+  ],
+  Array [
+    "{\\"type\\":\\"race:start\\",\\"race\\":{\\"title\\":\\"baz\\"}}",
+  ],
+  Array [
+    "{\\"type\\":\\"race:finish\\",\\"race\\":{\\"title\\":\\"baz\\"}}",
+  ],
+  Array [
+    "{\\"type\\":\\"file:finish\\"}",
+  ],
+]
+`;
