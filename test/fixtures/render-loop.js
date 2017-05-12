@@ -1,6 +1,6 @@
-import run from 'speedracer'
+import race from 'speedracer'
 
-run('alternate body background', r => {
+race('alternate body background', r => {
   return new Promise(resolve => {
     const colors = ['blue', 'white', 'red']
     let frame = 0

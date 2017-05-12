@@ -1,2 +1,1 @@
-import speedracer from 'speedracer'
-speedracer.end()
+import race from 'speedracer'

@@ -142,20 +142,20 @@ waterfall([
   () => modules.reporter.start(files),
   () => mapSeries(files, file =>
     modules.director.runFile(file)
-      .then(runs => mapSeries(runs, run => {
+      .then(races => mapSeries(races, race => {
         if (options.traces) {
-          run.saveTrace(options.output)
+          race.saveTrace(options.output)
         }
 
-        run.createReport()
+        race.createReport()
         if (options.reports) {
-          run.saveReport(options.output)
+          race.saveReport(options.output)
         }
 
-        return run
+        return race
       }))
   ),
-  runs => modules.reporter.finish(flat(runs))
+  races => modules.reporter.finish(flat(races))
 ])
 
 const error = (err, baton) => {

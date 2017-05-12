@@ -1,4 +1,4 @@
 import delay from 'delay'
-import run from 'speedracer'
+import race from 'speedracer'
 
-run('foo', () => Promise.resolve().then(delay(100)))
+race('foo', () => Promise.resolve().then(delay(100)))

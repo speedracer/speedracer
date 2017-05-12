@@ -8,7 +8,7 @@ const CI = !!process.env.CI
 
 const options = CI
   ? { flags: '--chrome-flags="--no-sandbox"', headless: false }
-  : {}
+  : { headless: true }
 
 test('launch chrome', async t => {
   const chrome = await launchChrome(options)

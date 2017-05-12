@@ -15,12 +15,12 @@ test.afterEach(async () => {
 
 test('run files in perf by default', async t => {
   const out = await execCli('run')
-  t.regex(out, /3 runs/)
+  t.regex(out, /3 races/)
 })
 
 test('run files as a glob', async t => {
   const out = await execCli('run', 'perf/*.js')
-  t.regex(out, /3 runs/)
+  t.regex(out, /3 races/)
 })
 
 test('display error when no file is found', async t => {

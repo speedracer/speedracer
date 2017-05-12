@@ -1,4 +1,4 @@
-import run from 'speedracer'
+import race from 'speedracer'
 
 const isPrime = num => {
   if (num < 2) return false
@@ -20,6 +20,6 @@ const searchPrimes = limit => {
   return optGuard
 }
 
-run('search for 10e4 first primes', r => {
+race('search for 10e4 first primes', r => {
   searchPrimes(10e4)
 })

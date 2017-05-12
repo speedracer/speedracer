@@ -9,56 +9,56 @@ class RunnerClient {
     this.port = 1337;
     this.ws = new WebSocket(\`ws://localhost:\${this.port}\`);
     this.router = {
-      'run:start:ack': () => this.startRun(),
-      'run:end:ack': () => this.runNext()
+      'race:start:ack': () => this.startRace(),
+      'race:finish:ack': () => this.next()
     };
-    this.runs = [];
+    this.races = [];
 
     this.ws.onopen = () => {
       this.ws.onmessage = ({ data }) => this.onMessage(JSON.parse(data));
       this.send('file:start');
-      this.runNext();
+      this.next();
     };
   }
 
-  enqueueRun(title, fn) {
-    this.runs.push({ title, fn });
+  enqueueRace(title, fn) {
+    this.races.push({ title, fn });
   }
 
-  runNext() {
-    this.currentRun = this.runs.shift();
+  next() {
+    this.currentRace = this.races.shift();
 
-    if (this.currentRun) {
-      this.send('run:start', this.currentRun);
+    if (this.currentRace) {
+      this.send('race:start', this.currentRace);
     }
     else {
-      this.send('file:end');
+      this.send('file:finish');
       this.ws.close();
     }
   }
 
-  startRun() {
+  startRace() {
     try {
-      const res = this.currentRun.fn();
+      const res = this.currentRace.fn();
       if (res && res.then) {
-        res.then(() => this.endRun());
+        res.then(() => this.finishRace());
       }
       else {
-        this.endRun();
+        this.finishRace();
       }
     }
     catch (err) {
-      this.runError(err);
+      this.raceError(err);
     }
   }
 
-  endRun() {
-    this.send('run:end', this.currentRun);
+  finishRace() {
+    this.send('race:finish', this.currentRace);
   }
 
-  runError(err) {
-    this.send('run:error', this.currentRun, err);
-    this.endRun();
+  raceError(err) {
+    this.send('race:error', this.currentRace, err);
+    this.finishRace();
   }
 
   onMessage(payload) {
@@ -69,9 +69,9 @@ class RunnerClient {
     }
   }
 
-  send(type, run, err) {
+  send(type, race, err) {
     const payload = { type };
-    if (run) payload.run = run;
+    if (race) payload.race = race;
     if (err) payload.err = err;
     this.ws.send(JSON.stringify(payload));
   }
@@ -80,14 +80,12 @@ class RunnerClient {
 const runner = new RunnerClient();
 
 var runnerClient = (title, fn) =>
-runner.enqueueRun(title, fn);
+runner.enqueueRace(title, fn);
 
 // For test purposes
 var RunnerClient_1 = RunnerClient;
 
 runnerClient.RunnerClient = RunnerClient_1;
-
-runnerClient.end();
 
 }());
 "
@@ -102,56 +100,56 @@ class RunnerClient {
     this.port = 3001;
     this.ws = new WebSocket(\`ws://localhost:\${this.port}\`);
     this.router = {
-      'run:start:ack': () => this.startRun(),
-      'run:end:ack': () => this.runNext()
+      'race:start:ack': () => this.startRace(),
+      'race:finish:ack': () => this.next()
     };
-    this.runs = [];
+    this.races = [];
 
     this.ws.onopen = () => {
       this.ws.onmessage = ({ data }) => this.onMessage(JSON.parse(data));
       this.send('file:start');
-      this.runNext();
+      this.next();
     };
   }
 
-  enqueueRun(title, fn) {
-    this.runs.push({ title, fn });
+  enqueueRace(title, fn) {
+    this.races.push({ title, fn });
   }
 
-  runNext() {
-    this.currentRun = this.runs.shift();
+  next() {
+    this.currentRace = this.races.shift();
 
-    if (this.currentRun) {
-      this.send('run:start', this.currentRun);
+    if (this.currentRace) {
+      this.send('race:start', this.currentRace);
     }
     else {
-      this.send('file:end');
+      this.send('file:finish');
       this.ws.close();
     }
   }
 
-  startRun() {
+  startRace() {
     try {
-      const res = this.currentRun.fn();
+      const res = this.currentRace.fn();
       if (res && res.then) {
-        res.then(() => this.endRun());
+        res.then(() => this.finishRace());
       }
       else {
-        this.endRun();
+        this.finishRace();
       }
     }
     catch (err) {
-      this.runError(err);
+      this.raceError(err);
     }
   }
 
-  endRun() {
-    this.send('run:end', this.currentRun);
+  finishRace() {
+    this.send('race:finish', this.currentRace);
   }
 
-  runError(err) {
-    this.send('run:error', this.currentRun, err);
-    this.endRun();
+  raceError(err) {
+    this.send('race:error', this.currentRace, err);
+    this.finishRace();
   }
 
   onMessage(payload) {
@@ -162,9 +160,9 @@ class RunnerClient {
     }
   }
 
-  send(type, run, err) {
+  send(type, race, err) {
     const payload = { type };
-    if (run) payload.run = run;
+    if (race) payload.race = race;
     if (err) payload.err = err;
     this.ws.send(JSON.stringify(payload));
   }
@@ -173,21 +171,19 @@ class RunnerClient {
 const runner = new RunnerClient();
 
 var runnerClient = (title, fn) =>
-runner.enqueueRun(title, fn);
+runner.enqueueRace(title, fn);
 
 // For test purposes
 var RunnerClient_1 = RunnerClient;
 
 runnerClient.RunnerClient = RunnerClient_1;
 
-runnerClient.end();
-
 }());
 "
 `;
 
 exports[`create a common js bundle 1`] = `
-"var run = (function () {
+"var speedracer = (function () {
 'use strict';
 
 var dep = () => {};
