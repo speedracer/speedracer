@@ -19,7 +19,7 @@ const createRunnerServer = require('../lib/runner-server')
 const display = require('../lib/display')
 const launchChrome = require('../lib/chrome-launcher')
 const startServer = require('../lib/server')
-const { flat, forEachProp, pipe } = require('../lib/.internal/util')
+const { flat, forEachProp, pipe, createDir } = require('../lib/.internal/util')
 
 const DEBUG = process.env.DEBUG
 
@@ -89,13 +89,18 @@ const prepare = baton => {
     baton.files = ['perf/**/*.js']
   }
 
-  // return matching files
-  return globby(baton.files).then(paths => {
-    if (paths.length === 0) {
-      throw new Error('No files found!')
-    }
-    baton.files = paths
-  })
+  return Promise.all([
+    // create output directory
+    createDir(baton.options.output),
+
+    // match glob pattern
+    globby(baton.files).then(paths => {
+      if (paths.length === 0) {
+        throw new Error('No files found!')
+      }
+      baton.files = paths
+    })
+  ])
 }
 
 // TODO: check what happens if one fails, how can we cleanup the others?
