@@ -146,7 +146,7 @@ Reports are `json` files with the `.speedracer` extension. They provide a perfor
 Here is the format:
 ```json
 {
-  "meta": {
+  "metadata": {
     "title": "render 60 frames",
     "group": "test-fixtures-multiple",
     "id": "render-60-frames"
