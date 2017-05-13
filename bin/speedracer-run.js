@@ -43,10 +43,9 @@ const argv = meow({
 
     ${display.section('Options:')}
 
-      -h, --help              Usage information        ${display.subtle(false)}
-      -o ${display.emphasis('dir')}, --output=${display.emphasis('dir')}    Output directory         ${display.subtle('.speedracer')}
-      -t, --timeout           Run timeout              ${display.subtle(defaultFlags.timeout)}
-      -p, --port              Tracing server port      ${display.subtle(defaultFlags.port)}
+      --output=${display.emphasis('dir')}, -o ${display.emphasis('dir')}    Output directory         ${display.subtle('.speedracer')}
+      --timeout, -t           Run timeout              ${display.subtle(defaultFlags.timeout)}
+      --port, -p              Tracing server port      ${display.subtle(defaultFlags.port)}
       --no-traces             Don't save traces        ${display.subtle(!defaultFlags.traces)}
       --no-reports            Don't save reports       ${display.subtle(!defaultFlags.reports)}
       --runner-port           Runner server port       ${display.subtle(defaultFlags.runnerPort)}
