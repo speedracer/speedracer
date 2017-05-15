@@ -12,6 +12,7 @@ checkForUpdate()
 
 const commands = [
   'run',
+  'test',
   'display'
 ]
 const defaultCommand = 'run'
