@@ -37,7 +37,7 @@
     "locate-chrome": "^0.1.1",
     "meow": "^3.7.0",
     "mkdirp": "^0.5.1",
-    "ms": "^1.0.0",
+    "ms": "^2.0.0",
     "p-map-series": "^1.0.0",
     "p-series": "^1.0.0",
     "p-waterfall": "^1.0.0",
