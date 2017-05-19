@@ -1,19 +1,20 @@
 // TODO: merge with additional reporters
 
-const summary = require('../lib/reporters/summary')
-const simpleUI = require('../lib/plugins/simple-ui')
+const basicReporter = require('../lib/plugins/reporters/basic')
+const save = require('../lib/plugins/processors/save')
+const basicUI = require('../lib/plugins/ui/basic')
 
 export default {
   files: 'test/fixtures/multiple.js',
-  dest: '.speedracer',
-  saveTraces: true,
-  saveReports: true,
   serverPort: 3000,
   runnerPort: 3001,
-  reporters: [
-    summary()
-  ],
   plugins: [
-    simpleUI()
+    basicReporter(),
+    save({
+      dest: '.speedracer',
+      traces: true,
+      reports: true
+    }),
+    basicUI()
   ]
 }

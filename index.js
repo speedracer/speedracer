@@ -2,19 +2,32 @@ const defaults = require('object-defaults')
 const globby = require('globby')
 const mapSeries = require('p-map-series')
 const path = require('path')
+const waterfall = require('p-waterfall')
 
 const { eachProp, pipe } = require('./lib/.internal/util')
-const createDriver = require('./lib/driver')
-const createRunnerServer = require('./lib/runner-server')
-const createTracer = require('./lib/tracer')
-const launchChrome = require('./lib/chrome-launcher')
-const startServer = require('./lib/server')
+const createDriver = require('./lib/modules/driver')
+const createRunnerServer = require('./lib/modules/runner-server')
+const createTracer = require('./lib/modules/tracer')
+const launchChrome = require('./lib/modules/chrome-launcher')
+const startServer = require('./lib/modules/server')
 
-const pluginEvent = (plugins, event) => (...args) => (
-  Promise.all(plugins.map(plugin => {
+const plugEvent = (plugins, event) => (...args) => (
+  plugins.map(plugin => {
     const fn = plugin[event]
     if (fn) fn.apply(plugin, args)
-  }))
+  })
+)
+
+const plugHook = (plugins, hook) => params => (
+  waterfall(plugins.map(plugin => params => {
+    const fn = plugin[hook]
+    if (fn) {
+      const ret = fn.call(plugin, params)
+      if (ret === false) throw Object({ skip: true })
+      return (ret || params)
+    }
+    return params
+  }), params)
 )
 
 const cleanup = ({ modules }) => (
@@ -33,7 +46,7 @@ const load = baton => (
 )
 
 const initialize = baton => {
-  const { config } = baton
+  const { config, plugins } = baton
 
   return Promise.all([
     launchChrome(config),
@@ -42,15 +55,18 @@ const initialize = baton => {
   ])
   .then(([ chrome, server, runner ]) => (
     createDriver(config).then(driver => {
-      const { plugins } = baton
-      const tracer = createTracer(runner, driver, config)
+      const hooks = {
+        trace: plugHook(plugins, 'trace'),
+        report: plugHook(plugins, 'report')
+      }
 
-      tracer.on('file:start', pluginEvent(plugins, 'onFileStart'))
-      tracer.on('file:finish', pluginEvent(plugins, 'onFileFinish'))
-      tracer.on('race:start', pluginEvent(plugins, 'onRaceStart'))
-      tracer.on('race:finish', pluginEvent(plugins, 'onRaceFinish'))
-      tracer.on('status', pluginEvent(plugins, 'onStatus'))
-      tracer.on('warn', pluginEvent(plugins, 'onWarn'))
+      const tracer = createTracer(runner, driver, hooks, config)
+      tracer.on('file:start', plugEvent(plugins, 'onFileStart'))
+      tracer.on('file:finish', plugEvent(plugins, 'onFileFinish'))
+      tracer.on('race:start', plugEvent(plugins, 'onRaceStart'))
+      tracer.on('race:finish', plugEvent(plugins, 'onRaceFinish'))
+      tracer.on('status', plugEvent(plugins, 'onStatus'))
+      tracer.on('warn', plugEvent(plugins, 'onWarn'))
 
       baton.modules = { chrome, server, runner, driver }
       baton.tracer = tracer
@@ -58,8 +74,12 @@ const initialize = baton => {
   ))
 }
 
-const runFiles = ({ files, tracer }) => (
-  mapSeries(files, file => tracer.trace(file))
+const runFiles = ({ files, tracer, plugins }) => (
+  waterfall([
+    plugEvent(plugins, 'onStart'),
+    mapSeries(files, file => tracer.trace(file)),
+    plugEvent(plugins, 'onFinish')
+  ], files)
 )
 
 const error = (err, baton) => {
@@ -70,7 +90,6 @@ const error = (err, baton) => {
 const speedracer = (files, config) => {
   const defaultConfig = {
     files: 'perf/**/*.js',
-    dest: path.join(process.cwd(), '.speedracer'),
     port: 3000,
     timeout: 3000,
     traces: true,
