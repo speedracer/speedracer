@@ -1,15 +1,16 @@
 const defaults = require('object-defaults')
 const globby = require('globby')
 const mapSeries = require('p-map-series')
-const path = require('path')
 const waterfall = require('p-waterfall')
 
 const { eachProp, pipe } = require('./lib/.internal/util')
 const createDriver = require('./lib/modules/driver')
-const createRunnerServer = require('./lib/modules/runner-server')
+const startRunner = require('./lib/modules/runner')
 const createTracer = require('./lib/modules/tracer')
-const launchChrome = require('./lib/modules/chrome-launcher')
+const startChrome = require('./lib/modules/chrome')
 const startServer = require('./lib/modules/server')
+
+// TODO: handle fallback plugins here, instead of having to declare them explicitly in the config
 
 const plugEvent = (plugins, event) => (...args) => (
   plugins.map(plugin => {
@@ -49,9 +50,9 @@ const initialize = baton => {
   const { config, plugins } = baton
 
   return Promise.all([
-    launchChrome(config),
-    startServer(config),
-    createRunnerServer(config)
+    startChrome(config),
+    startServer(config, { loadFile: plugHook(plugins, 'loadFile') }),
+    startRunner(config)
   ])
   .then(([ chrome, server, runner ]) => (
     createDriver(config).then(driver => {
@@ -60,7 +61,7 @@ const initialize = baton => {
         report: plugHook(plugins, 'report')
       }
 
-      const tracer = createTracer(runner, driver, hooks, config)
+      const tracer = createTracer(runner, driver, config, hooks)
       tracer.on('file:start', plugEvent(plugins, 'onFileStart'))
       tracer.on('file:finish', plugEvent(plugins, 'onFileFinish'))
       tracer.on('race:start', plugEvent(plugins, 'onRaceStart'))
