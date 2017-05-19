@@ -1,0 +1,32 @@
+{
+  "metadata": {
+    "title": "search 10e4 first primes very long",
+    "group": "test--fixtures--multiple",
+    "id": "search-10e4-first-primes-very-long"
+  },
+  "profiling": {
+    "categories": {
+      "scripting": 2064.485000014305,
+      "painting": 0.06499999761581421,
+      "rendering": 0.03100001811981201
+    },
+    "events": {
+      "JS Frame": 2064.485000014305,
+      "Composite Layers": 0.06499999761581421,
+      "Update Layer Tree": 0.03100001811981201
+    },
+    "functions": {
+      "f:searchPrimes@24": 2010.988000035286,
+      "f:isPrime@24": 52.94899994134903,
+      "f:ws.onmessage@24": 0.34700000286102295,
+      "f:startRace@24": 0.10100001096725464,
+      "f:race:start:ack@24": 0.10000002384185791,
+      "CompositeLayers": 0.06499999761581421,
+      "UpdateLayerTree": 0.03100001811981201
+    }
+  },
+  "rendering": {
+    "firstPaint": null,
+    "fps": null
+  }
+}

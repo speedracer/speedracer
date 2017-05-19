@@ -1,0 +1,46 @@
+{
+  "metadata": {
+    "title": "render 60 frames",
+    "group": "test--fixtures--multiple",
+    "id": "render-60-frames"
+  },
+  "profiling": {
+    "categories": {
+      "scripting": 12.250999927520752,
+      "rendering": 9.841000199317932,
+      "painting": 8.720999896526337
+    },
+    "events": {
+      "Animation Frame Fired": 8.456999778747559,
+      "Composite Layers": 6.7090001702308655,
+      "Update Layer Tree": 5.353000104427338,
+      "Recalculate Style": 4.4880000948905945,
+      "JS Frame": 3.65200012922287,
+      "Paint": 2.011999726295471,
+      "Run Microtasks": 0.1420000195503235
+    },
+    "functions": {
+      "FireAnimationFrame": 8.456999778747559,
+      "CompositeLayers": 6.7090001702308655,
+      "UpdateLayerTree": 5.353000104427338,
+      "UpdateLayoutTree": 4.4880000948905945,
+      "f:render@24": 2.0250000953674316,
+      "Paint": 2.011999726295471,
+      "f:requestAnimationFrame@": 1.2220000624656677,
+      "f:ws.onmessage@24": 0.20999997854232788,
+      "RunMicrotasks": 0.1420000195503235,
+      "f:Promise@": 0.09999996423721313,
+      "f:startRace@24": 0.09500002861022949
+    }
+  },
+  "rendering": {
+    "firstPaint": 0.019456,
+    "fps": {
+      "mean": 61.02,
+      "variance": 2.1,
+      "sd": 1.45,
+      "lo": 56.96,
+      "hi": 63.77
+    }
+  }
+}

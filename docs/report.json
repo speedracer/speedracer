@@ -1,0 +1,20 @@
+{
+  "metadata": {
+    "title": "render 60 frames",
+    "file": "test/fixtures/multiple.js",
+    "analyzers": ["summary", "activities", "frames"]
+  },
+  "summary": {
+    "scripting": 0,
+    "rendering": 0,
+    "painting": 0
+  },
+  "activities": {
+    "Animation Frame Fired": 0,
+    "JS Frame": 0
+  },
+  "frames": {
+    "fps": 0,
+    "firstPaint": 0
+  }
+}
