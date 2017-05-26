@@ -41,6 +41,7 @@
     "ms": "^2.0.0",
     "object-defaults": "^1.0.0",
     "p-map-series": "^1.0.0",
+    "p-series": "^1.0.0",
     "p-waterfall": "^1.0.0",
     "pify": "^2.3.0",
     "rollup": "^0.41.6",
