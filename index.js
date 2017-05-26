@@ -1,121 +1,18 @@
-const defaults = require('object-defaults')
-const globby = require('globby')
-const mapSeries = require('p-map-series')
-const waterfall = require('p-waterfall')
+const Chrome = require('./lib/modules/chrome')
+const ChromeRemote = require('./lib/modules/chrome-remote')
+const Driver = require('./lib/modules/driver')
+const FileServer = require('./lib/modules/file-server')
+const Runner = require('./lib/modules/runner')
+const RunnerServer = require('./lib/modules/runner-server')
+const speedracer = require('./lib/speedracer')
+const Tracer = require('./lib/modules/tracer')
 
-const { eachProp, pipe } = require('./lib/.internal/util')
-const createDriver = require('./lib/modules/driver')
-const startRunner = require('./lib/modules/runner')
-const createTracer = require('./lib/modules/tracer')
-const startChrome = require('./lib/modules/chrome')
-const startServer = require('./lib/modules/server')
-
-// TODO: handle fallback plugins here, instead of having to declare them explicitly in the config
-
-const plugEvent = (plugins, event) => (...args) => (
-  plugins.map(plugin => {
-    const fn = plugin[event]
-    if (fn) fn.apply(plugin, args)
+module.exports = options => (
+  speedracer(options, {
+    tracer: [Tracer,
+      [Driver, [ChromeRemote, Chrome]],
+      [Runner, RunnerServer]
+    ],
+    server: FileServer
   })
 )
-
-const plugHook = (plugins, hook) => params => (
-  waterfall(plugins.map(plugin => params => {
-    const fn = plugin[hook]
-    if (fn) {
-      const ret = fn.call(plugin, params)
-      if (ret === false) throw Object({ skip: true })
-      return (ret || params)
-    }
-    return params
-  }), params)
-)
-
-const cleanup = ({ modules }) => (
-  eachProp(modules, m => {
-    if (m && m.close) m.close()
-  })
-)
-
-const load = baton => (
-  globby(baton.files).then(paths => {
-    if (paths.length === 0) {
-      throw new Error('No files found!')
-    }
-    baton.files = paths
-  })
-)
-
-const initialize = baton => {
-  const { config, plugins } = baton
-
-  return Promise.all([
-    startChrome(config),
-    startServer(config, { loadFile: plugHook(plugins, 'loadFile') }),
-    startRunner(config)
-  ])
-  .then(([ chrome, server, runner ]) => (
-    createDriver(config).then(driver => {
-      const hooks = {
-        trace: plugHook(plugins, 'trace'),
-        report: plugHook(plugins, 'report')
-      }
-
-      const tracer = createTracer(runner, driver, config, hooks)
-      tracer.on('file:start', plugEvent(plugins, 'onFileStart'))
-      tracer.on('file:finish', plugEvent(plugins, 'onFileFinish'))
-      tracer.on('race:start', plugEvent(plugins, 'onRaceStart'))
-      tracer.on('race:finish', plugEvent(plugins, 'onRaceFinish'))
-      tracer.on('status', plugEvent(plugins, 'onStatus'))
-      tracer.on('warn', plugEvent(plugins, 'onWarn'))
-
-      baton.modules = { chrome, server, runner, driver }
-      baton.tracer = tracer
-    })
-  ))
-}
-
-const runFiles = ({ files, tracer, plugins }) => (
-  waterfall([
-    plugEvent(plugins, 'onStart'),
-    mapSeries(files, file => tracer.trace(file)),
-    plugEvent(plugins, 'onFinish')
-  ], files)
-)
-
-const error = (err, baton) => {
-  cleanup(baton)
-  throw err
-}
-
-const speedracer = (files, config) => {
-  const defaultConfig = {
-    files: 'perf/**/*.js',
-    port: 3000,
-    timeout: 3000,
-    traces: true,
-    reports: true,
-    runnerPort: 3001,
-    headless: true,
-    reporters: [],
-    plugins: []
-  }
-
-  const initialState = {
-    files,
-    config: defaults({}, config, defaultConfig),
-    modules: {},
-    tracer: null,
-    reporters: config.reporters,
-    plugins: config.plugins
-  }
-
-  return pipe(initialState, [
-    load,
-    initialize,
-    runFiles,
-    cleanup
-  ], error)
-}
-
-module.exports = speedracer

@@ -81,18 +81,15 @@ const loadConfig = (argv) => {
       }
     }
 
-    const options = require(config)
-    options.files = arrify(options.files)
-
-    return {
-      files: union(argv.input.slice(1), options.files),
-      options: defaults({}, options, argv.flags)
-    }
+    const options = defaults({}, require(config), argv.flags)
+    options.files = union(argv.input.slice(1), arrify(options.files))
+    return options
   })
 }
 
-const run = ({ files, options }) =>
-speedracer(files, options)
+const run = options => (
+  speedracer(options)
+)
 
 waterfall([
   checkForUpdate,
