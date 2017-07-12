@@ -78,7 +78,7 @@ race('my first async race', () =>
 new Promise(resolve => {
   // ... stuff to profile
   resolve()
-})
+}))
 ```
 
 [Chrome DevTools protocol]: https://chromedevtools.github.io/devtools-protocol/
