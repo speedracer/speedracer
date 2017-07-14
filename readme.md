@@ -19,8 +19,8 @@
   <a href="//codecov.io/github/ngryman/speedracer">
     <img alt="Build Status" src="https://img.shields.io/codecov/c/github/ngryman/speedracer.svg">
   </a>
-  <a href="//discord.gg/qzmXsUY">
-    <img alt="Discord" src="https://img.shields.io/badge/chat-discord-brightgreen.svg">
+  <a href="https://speedracerhq.herokuapp.com/">
+    <img alt="Say hi!" src="https://speedracerhq.herokuapp.com/badge.svg">
   </a>
 </p>
 
