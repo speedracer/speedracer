@@ -58,7 +58,7 @@
     "codecov.io": "^0.1.6",
     "cross-env": "^5.0.0",
     "del": "^2.2.2",
-    "eslint": "^3.19.0",
+    "eslint": "^4.4.1",
     "eslint-config-ngryman": "^1.7.1",
     "get-stream": "^3.0.0",
     "mock-require": "^2.0.2",
