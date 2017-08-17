@@ -63,7 +63,7 @@
     "get-stream": "^3.0.0",
     "mock-require": "^2.0.2",
     "nyc": "^10.3.2",
-    "sinon": "^2.2.0"
+    "sinon": "^3.2.1"
   },
   "ava": {
     "require": [
