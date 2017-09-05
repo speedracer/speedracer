@@ -62,7 +62,7 @@
     "eslint-config-ngryman": "^1.7.1",
     "get-stream": "^3.0.0",
     "mock-require": "^2.0.2",
-    "nyc": "^10.3.2",
+    "nyc": "^11.2.0",
     "sinon": "^2.2.0"
   },
   "ava": {
