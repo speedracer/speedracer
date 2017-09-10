@@ -139,7 +139,7 @@ search-10e4-first-primes-very-long.trace.gz
 $ gunzip render-60-frames.trace.gz
 ```
 
-2. Load it in Chrome Devtools and enjoy :tada:
+2. Load it in Chrome Devtools or use [DevTools Timeline Viewer](https://chromedevtools.github.io/timeline-viewer/) and enjoy :tada:
 
 ### Reports
 
