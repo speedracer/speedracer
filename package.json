@@ -46,7 +46,7 @@
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-stream": "^1.19.0",
     "string-width": "^2.0.0",
-    "update-notifier": "^2.1.0",
+    "update-notifier": "^2.3.0",
     "word-wrap": "^1.2.2",
     "ws": "^3.0.0"
   },
