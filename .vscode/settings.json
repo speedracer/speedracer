@@ -1,0 +1,4 @@
+{
+  "nodeTdd.glob": "{lib,test}/**/*.{js}",
+  "nodeTdd.showCoverage": true
+}
