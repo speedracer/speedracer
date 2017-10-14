@@ -41,7 +41,7 @@
     "p-map-series": "^1.0.0",
     "p-series": "^1.0.0",
     "p-waterfall": "^1.0.0",
-    "pify": "^2.3.0",
+    "pify": "^3.0.0",
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-stream": "^1.24.1",
