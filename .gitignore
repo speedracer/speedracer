@@ -1,5 +1,6 @@
 # project
 .nyc_output
+.vscode
 coverage
 .todo
 .speedracer
