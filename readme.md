@@ -26,6 +26,8 @@
 
 ---
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ngryman/speedracer.svg)](https://greenkeeper.io/)
+
 Speed Racer is a performance runner, like a test runner, but for performance :racing_car:. It runs scripts (*races*) in Chrome (headlessly if possible) and produces detailed **traces** and **reports** on scripting, rendering and painting.
 
 <p align="center">
