@@ -1,0 +1,1224 @@
+[
+  {
+    "pid": 41399,
+    "tid": 14339,
+    "ts": 2665441998575,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 154953657,
+    "s": "t"
+  },
+  {
+    "pid": 41399,
+    "tid": 14339,
+    "ts": 2665442098300,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 154955259,
+    "s": "t"
+  },
+  {
+    "pid": 41399,
+    "tid": 14339,
+    "ts": 2665442199767,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 154956731,
+    "s": "t"
+  },
+  {
+    "pid": 41399,
+    "tid": 14339,
+    "ts": 2665442297014,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 154958561,
+    "s": "t"
+  },
+  {
+    "pid": 41399,
+    "tid": 14339,
+    "ts": 2665442400281,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 154960741,
+    "s": "t"
+  },
+  {
+    "pid": 41399,
+    "tid": 14339,
+    "ts": 2665442500090,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 154963019,
+    "s": "t"
+  },
+  {
+    "pid": 41399,
+    "tid": 14339,
+    "ts": 2665442599664,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 154965240,
+    "s": "t"
+  },
+  {
+    "pid": 41399,
+    "tid": 14339,
+    "ts": 2665442695963,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 154966871,
+    "s": "t"
+  },
+  {
+    "pid": 41399,
+    "tid": 14339,
+    "ts": 2665442795869,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 154968311,
+    "s": "t"
+  },
+  {
+    "pid": 41399,
+    "tid": 14339,
+    "ts": 2665442898329,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 154969776,
+    "s": "t"
+  },
+  {
+    "pid": 41399,
+    "tid": 14339,
+    "ts": 2665442996024,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 154971299,
+    "s": "t"
+  },
+  {
+    "pid": 41399,
+    "tid": 14339,
+    "ts": 2665443096221,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 154972867,
+    "s": "t"
+  },
+  {
+    "pid": 41399,
+    "tid": 14339,
+    "ts": 2665443198872,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 154974633,
+    "s": "t"
+  },
+  {
+    "pid": 41399,
+    "tid": 14339,
+    "ts": 2665443303360,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 154976861,
+    "s": "t"
+  },
+  {
+    "pid": 41399,
+    "tid": 14339,
+    "ts": 2665443400360,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 154978885,
+    "s": "t"
+  },
+  {
+    "pid": 41399,
+    "tid": 14339,
+    "ts": 2665443498923,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 154980502,
+    "s": "t"
+  },
+  {
+    "pid": 41399,
+    "tid": 14339,
+    "ts": 2665443599592,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 154982015,
+    "s": "t"
+  },
+  {
+    "pid": 41399,
+    "tid": 14339,
+    "ts": 2665443799274,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 154983696,
+    "s": "t"
+  },
+  {
+    "pid": 41399,
+    "tid": 14339,
+    "ts": 2665443999105,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 154985313,
+    "s": "t"
+  },
+  {
+    "pid": 41399,
+    "tid": 14339,
+    "ts": 2665444199513,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 154987119,
+    "s": "t"
+  },
+  {
+    "pid": 41399,
+    "tid": 14339,
+    "ts": 2665444399027,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 154988744,
+    "s": "t"
+  },
+  {
+    "pid": 41399,
+    "tid": 14339,
+    "ts": 2665444595876,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 154990188,
+    "s": "t"
+  },
+  {
+    "pid": 41399,
+    "tid": 14339,
+    "ts": 2665444899371,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 154991615,
+    "s": "t"
+  },
+  {
+    "pid": 55932,
+    "tid": 14595,
+    "ts": 2665441847903,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 69962,
+    "s": "t"
+  },
+  {
+    "pid": 55932,
+    "tid": 14595,
+    "ts": 2665441861688,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 71245,
+    "s": "t"
+  },
+  {
+    "pid": 55932,
+    "tid": 14595,
+    "ts": 2665441863458,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 71916,
+    "s": "t"
+  },
+  {
+    "pid": 55932,
+    "tid": 14595,
+    "ts": 2665441879352,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 73064,
+    "s": "t"
+  },
+  {
+    "pid": 55932,
+    "tid": 14595,
+    "ts": 2665441896249,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 74753,
+    "s": "t"
+  },
+  {
+    "pid": 55932,
+    "tid": 14595,
+    "ts": 2665441917423,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 76089,
+    "s": "t"
+  },
+  {
+    "pid": 55932,
+    "tid": 14595,
+    "ts": 2665441929877,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 77485,
+    "s": "t"
+  },
+  {
+    "pid": 55932,
+    "tid": 14595,
+    "ts": 2665442002842,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 81978,
+    "s": "t"
+  },
+  {
+    "pid": 55932,
+    "tid": 14595,
+    "ts": 2665442346411,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 86092,
+    "s": "t"
+  },
+  {
+    "pid": 55932,
+    "tid": 14595,
+    "ts": 2665442847765,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 87812,
+    "s": "t"
+  },
+  {
+    "pid": 55932,
+    "tid": 14595,
+    "ts": 2665443348814,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 89691,
+    "s": "t"
+  },
+  {
+    "pid": 55932,
+    "tid": 14595,
+    "ts": 2665443850674,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 101429,
+    "s": "t"
+  },
+  {
+    "pid": 55932,
+    "tid": 14595,
+    "ts": 2665444346817,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 110608,
+    "s": "t"
+  },
+  {
+    "pid": 55932,
+    "tid": 14595,
+    "ts": 2665444847787,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 112264,
+    "s": "t"
+  },
+  {
+    "pid": 55932,
+    "tid": 14595,
+    "ts": 2665444933529,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 113919,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665442350009,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1492742,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665442362925,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1494980,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665442379448,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1498407,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665442396053,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1501135,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665442412740,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1503178,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665442429473,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1505508,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665442446056,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1507739,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665442462766,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1509773,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665442479635,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1512060,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665442496366,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1514538,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665442512981,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1516724,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665442529471,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1519282,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665442546113,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1521956,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665442562760,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1523895,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665442579440,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1526062,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665442596197,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1528215,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665442612806,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1530465,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665442629542,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1533121,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665443137908,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1535261,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665443154862,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1536264,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665443171137,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1537268,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665443187758,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1538472,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665443204840,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1539508,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665443221165,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1540516,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665443240492,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1541781,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665443246404,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1542631,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665443263040,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1544713,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665443280019,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1546944,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665443296635,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1549459,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665443313218,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1551938,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665443333656,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1554650,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665443346819,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1556447,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665443363494,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1558001,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665443379891,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1559394,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665443396467,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1561159,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665443413189,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1562906,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665443429795,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1565427,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665443446494,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1567147,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665443463073,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1568613,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665443551030,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1572832,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665443567666,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1575019,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665444066702,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1577458,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665444083859,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1578923,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665444100259,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1580076,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665444118033,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1581180,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665444133653,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1582268,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665444150048,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1583286,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665444167179,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1584291,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665444183515,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1585313,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665444201148,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1586594,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665444217275,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1587996,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665444233394,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1589161,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665444250175,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1590192,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665444267433,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1591252,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665444283646,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1592253,
+    "s": "t"
+  },
+  {
+    "pid": 55548,
+    "tid": 15363,
+    "ts": 2665444300036,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline.frame",
+    "name": "DrawFrame",
+    "args": {
+      "layerTreeId": 1
+    },
+    "tts": 1593297,
+    "s": "t"
+  }
+]
