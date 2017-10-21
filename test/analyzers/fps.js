@@ -4,7 +4,7 @@ import analyzeFPS from '../../lib/analyzers/fps'
 
 test('compute fps stats', async t => {
   const { fps } = await analyzeFPS({
-    events: require('../fixtures/artifacts/frames.json')
+    events: require('../fixtures/artefacts/events/frames.json')
   })
   t.is(fps.min, 31)
   t.is(fps.max, 33)

@@ -1,4 +1,4 @@
-import { Race, Serie } from '../../../lib/core'
+import { Race, Serie } from '../../../../lib/core'
 
 const code = `
   const isPrime = num => {
