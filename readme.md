@@ -26,6 +26,8 @@
 
 ---
 
+[![Join the chat at https://gitter.im/speedracerhq/Lobby](https://badges.gitter.im/speedracerhq/Lobby.svg)](https://gitter.im/speedracerhq/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Speed Racer is a performance runner, like a test runner, but for performance :racing_car:. It runs scripts (*races*) in Chrome (headlessly if possible) and produces detailed **traces** and **reports** on scripting, rendering and painting.
 
 <p align="center">
