@@ -1,4 +1,4 @@
-import { Race, Serie } from '../../../../lib/core'
+import { Race, Serie } from '../../../../lib/artefacts'
 
 const code = `
   const race1 = function() {
