@@ -2,6 +2,20 @@
   {
     "pid": 41399,
     "tid": 14339,
+    "ts": 2665440998575,
+    "ph": "I",
+    "cat": "disabled-by-default-devtools.timeline",
+    "name": "TracingStartedInPage",
+    "args": {
+      "data": {
+        "page": "0x14ed173c1e30"
+      }
+    },
+    "s": "t"
+  },
+  {
+    "pid": 41399,
+    "tid": 14339,
     "ts": 2665441998575,
     "ph": "I",
     "cat": "disabled-by-default-devtools.timeline.frame",

@@ -1087,6 +1087,10 @@ chokidar@^1.4.2:
   optionalDependencies:
     fsevents "^1.0.0"
 
+chrome-devtools-frontend@1.0.445684:
+  version "1.0.445684"
+  resolved "https://registry.yarnpkg.com/chrome-devtools-frontend/-/chrome-devtools-frontend-1.0.445684.tgz#8540131836024df2b70fe90d0322af368931d762"
+
 ci-info@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-1.0.0.tgz#dc5285f2b4e251821683681c381c3388f46ec534"
@@ -1396,6 +1400,13 @@ detect-indent@^4.0.0:
   resolved "https://registry.yarnpkg.com/detect-indent/-/detect-indent-4.0.0.tgz#f76d064352cdf43a1cb6ce619c4ee3a9475de208"
   dependencies:
     repeating "^2.0.0"
+
+devtools-timeline-model@^1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/devtools-timeline-model/-/devtools-timeline-model-1.3.1.tgz#27e9b849d45ad50e5d3675657d4aebbf7a919669"
+  dependencies:
+    chrome-devtools-frontend "1.0.445684"
+    resolve "1.1.7"
 
 diff@^3.1.0:
   version "3.2.0"
