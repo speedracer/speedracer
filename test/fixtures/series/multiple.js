@@ -1,0 +1,2 @@
+import './primes'
+import './standalone'
