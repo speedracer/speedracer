@@ -5,10 +5,10 @@ import { stubExecFileOnce } from 'stub-spawn-once'
 
 import NodeTracer from '../../lib/tracers/node'
 
-test.serial('trace a simple race', async t => {
+test.serial.skip('trace a simple race', async t => {
   await using(NodeTracer(), async tracer => {
-    const serie = await tracer.trace(require('../fixtures/artefacts/series/primes'))
-    t.true(has(serie, 'races[0].trace.traceEvents'))
+    const [ trace ] = await tracer.trace(require('../fixtures/artefacts/series/primes'))
+    t.true(has(trace, 'traceEvents'))
   })
 })
 
