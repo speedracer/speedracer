@@ -81,7 +81,7 @@ const header = () => console.log('')
 const footer = () => console.log('\n')
 
 const cleanup = ({ modules }) =>
-forEachProp(modules, m => { if (m && m.close) m.close() })
+  forEachProp(modules, m => { if (m && m.close) m.close() })
 
 const prepare = baton => {
   // set default directory to perf
@@ -100,63 +100,63 @@ const prepare = baton => {
 
 // TODO: check what happens if one fails, how can we cleanup the others?
 const initialize = baton =>
-series([
-  () => launchChrome({
-    flags: baton.options.chromeFlags,
-    headless: baton.options.headless
-  }),
-  () => startServer({
-    baseDir: process.cwd(),
-    port: baton.options.port,
-    clientPort: baton.options.runnerPort
-  }),
-  () => createRunnerServer({
-    port: baton.options.runnerPort
-  }),
-  () => createDriver({
-    port: baton.options.port
-  }),
-  () => createReporter(DEBUG ? 'noop' : 'compact')
-]).then(modules => {
-  baton.modules = {
-    chrome: modules[0],
-    server: modules[1],
-    runner: modules[2],
-    driver: modules[3],
-    reporter: modules[4]
-  }
+  series([
+    () => launchChrome({
+      flags: baton.options.chromeFlags,
+      headless: baton.options.headless
+    }),
+    () => startServer({
+      baseDir: process.cwd(),
+      port: baton.options.port,
+      clientPort: baton.options.runnerPort
+    }),
+    () => createRunnerServer({
+      port: baton.options.runnerPort
+    }),
+    () => createDriver({
+      port: baton.options.port
+    }),
+    () => createReporter(DEBUG ? 'noop' : 'compact')
+  ]).then(modules => {
+    baton.modules = {
+      chrome: modules[0],
+      server: modules[1],
+      runner: modules[2],
+      driver: modules[3],
+      reporter: modules[4]
+    }
 
-  baton.modules.director = createDirector(baton.modules, baton.options)
+    baton.modules.director = createDirector(baton.modules, baton.options)
 
-  /* istanbul ignore next */
-  process.on('SIGINT', () => {
-    cleanup(baton)
-    display.showCursor()
-    process.stdout.write('\n')
-    process.exit()
+    /* istanbul ignore next */
+    process.on('SIGINT', () => {
+      cleanup(baton)
+      display.showCursor()
+      process.stdout.write('\n')
+      process.exit()
+    })
   })
-})
 
 const runFiles = ({ files, options, modules }) =>
-waterfall([
-  () => modules.reporter.start(files),
-  () => mapSeries(files, file =>
-    modules.director.runFile(file)
-      .then(races => mapSeries(races, race => {
-        if (options.traces) {
-          race.saveTrace(options.output)
-        }
+  waterfall([
+    () => modules.reporter.start(files),
+    () => mapSeries(files, file =>
+      modules.director.runFile(file)
+        .then(races => mapSeries(races, race => {
+          if (options.traces) {
+            race.saveTrace(options.output)
+          }
 
-        race.createReport()
-        if (options.reports) {
-          race.saveReport(options.output)
-        }
+          race.createReport()
+          if (options.reports) {
+            race.saveReport(options.output)
+          }
 
-        return race
-      }))
-  ),
-  races => modules.reporter.finish(flat(races))
-])
+          return race
+        }))
+    ),
+    races => modules.reporter.finish(flat(races))
+  ])
 
 const error = (err, baton) => {
   console.error(chalk.red(err.message))
@@ -169,15 +169,15 @@ const error = (err, baton) => {
 }
 
 const run = (files, options) =>
-pipe({ files, options, modules: {}}, [
-  display.hideCursor,
-  header,
-  prepare,
-  initialize,
-  runFiles,
-  cleanup,
-  footer,
-  display.showCursor
-], error)
+  pipe({ files, options, modules: {}}, [
+    display.hideCursor,
+    header,
+    prepare,
+    initialize,
+    runFiles,
+    cleanup,
+    footer,
+    display.showCursor
+  ], error)
 
 run(argv.input.slice(1), argv.flags)

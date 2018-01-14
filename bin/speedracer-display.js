@@ -64,12 +64,12 @@ const prepare = (baton) => {
 }
 
 const displayFiles = ({ files, options }) =>
-mapSeries(files, file => {
+  mapSeries(files, file => {
   // only process .speedracer extension
-  if (!file.endsWith('.speedracer')) return
+    if (!file.endsWith('.speedracer')) return
 
-  return loadReport(file).then(displayReport)
-})
+    return loadReport(file).then(displayReport)
+  })
 
 const error = (err, baton) => {
   console.error(chalk.red(err.message))
@@ -79,11 +79,11 @@ const error = (err, baton) => {
 }
 
 const run = (files, options) =>
-pipe({ files, options }, [
-  header,
-  prepare,
-  displayFiles,
-  footer
-], error)
+  pipe({ files, options }, [
+    header,
+    prepare,
+    displayFiles,
+    footer
+  ], error)
 
 run(argv.input.slice(1), argv.flags)
