@@ -7,6 +7,9 @@ before_install:
   - export SPEEDRACER_CHROME=$(pwd)/chrome-linux/chrome
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
+  - npm i -g npm@latest
+install:
+ - npm ci
 cache:
   yarn: true
   directories:
