@@ -13,11 +13,11 @@
 </p>
 
 <p align="center">
-  <a href="//travis-ci.org/ngryman/speedracer">
-    <img alt="Build Status" src="https://img.shields.io/travis/ngryman/speedracer.svg">
+  <a href="//travis-ci.org/speedracer/speedracer">
+    <img alt="Build Status" src="https://img.shields.io/travis/speedracer/speedracer.svg">
   </a>
-  <a href="//codecov.io/github/ngryman/speedracer">
-    <img alt="Build Status" src="https://img.shields.io/codecov/c/github/ngryman/speedracer.svg">
+  <a href="//codecov.io/github/speedracer/speedracer">
+    <img alt="Build Status" src="https://img.shields.io/codecov/c/github/speedracer/speedracer.svg">
   </a>
   <a href="https://speedracerhq.herokuapp.com/">
     <img alt="Say hi!" src="https://speedracerhq.herokuapp.com/badge.svg">
@@ -32,9 +32,9 @@ Speed Racer is a performance runner, like a test runner, but for performance :ra
   <br><br>
   <b>
     See what's new in :package:
-    <a href="//github.com/ngryman/speedracer/releases/tag/v0.2.0">0.2.0</a>
+    <a href="//github.com/speedracer/speedracer/releases/tag/v0.2.0">0.2.0</a>
     or what's being cooked for :package:
-    <a href="//github.com/ngryman/speedracer/projects/2">0.3.0</a>
+    <a href="//github.com/speedracer/speedracer/projects/2">0.3.0</a>
   </b>
   <br><br>
 </p>
@@ -96,7 +96,7 @@ Those artifacts will be saved in the `.speedracer` directory by default.
 To run races, type `speedracer run perf/*.js` or simply `speedracer perf/*.js`. Note that it will run all `.js` files in the `perf` directory by default, so you can omit `perf/*.js` if you are using this directory.
 
 For more details, type `speedracer run --help`.
-You can browse examples [here](https://github.com/ngryman/speedracer/tree/master/test/fixtures).
+You can browse examples [here](https://github.com/speedracer/speedracer/tree/master/test/fixtures).
 
 ### Display reports
 
