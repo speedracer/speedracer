@@ -1,17 +1,15 @@
 sudo: false
 dist: trusty
 language: node_js
+addons:
+  chrome: stable
 before_install:
-  - wget https://download-chromium.appspot.com/dl/Linux_x64?type=snapshots -qO chrome.zip
-  - unzip -n chrome.zip
-  - export SPEEDRACER_CHROME=$(pwd)/chrome-linux/chrome
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+  - export SPEEDRACER_CHROME=google-chrome-stable
 cache:
   yarn: true
   directories:
     - node_modules
-    - chrome-linux
 branches:
   only:
     - master
