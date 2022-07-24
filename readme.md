@@ -1,3 +1,5 @@
+**:wave: Speedracer was a great experiment but it's not maintained anymore. Let me know if you know a good alternative that I can redirect to.**
+
 <h1 align="center">speedracer</h1>
 
 <p align="center">
