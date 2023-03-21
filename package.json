@@ -24,12 +24,12 @@
     "see-coverage": "nyc report --reporter=html && open coverage/index.html"
   },
   "dependencies": {
-    "ansi-escapes": "^2.0.0",
-    "chalk": "^1.1.3",
-    "chrome-remote-interface": "^0.21.0",
+    "ansi-escapes": "^3.0.0",
+    "chalk": "^2.1.0",
+    "chrome-remote-interface": "^0.25.1",
     "cli-spinners": "^1.0.0",
     "cli-truncate": "^1.0.0",
-    "debug": "^2.6.6",
+    "debug": "^3.1.0",
     "delay": "^2.0.0",
     "devtools-timeline-model": "^1.3.0",
     "globby": "^6.1.0",
@@ -41,7 +41,7 @@
     "p-map-series": "^1.0.0",
     "p-series": "^1.0.0",
     "p-waterfall": "^1.0.0",
-    "pify": "^2.3.0",
+    "pify": "^3.0.0",
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-stream": "^1.24.1",
@@ -51,19 +51,19 @@
     "ws": "^3.0.0"
   },
   "devDependencies": {
-    "ava": "^0.19.1",
+    "ava": "^0.22.0",
     "babel-plugin-istanbul": "^4.1.3",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.4.0",
     "codecov.io": "^0.1.6",
     "cross-env": "^5.0.0",
-    "del": "^2.2.2",
-    "eslint": "^3.19.0",
+    "del": "^3.0.0",
+    "eslint": "^4.9.0",
     "eslint-config-ngryman": "^1.7.1",
     "get-stream": "^3.0.0",
     "mock-require": "^2.0.2",
-    "nyc": "^10.3.2",
-    "sinon": "^2.2.0"
+    "nyc": "^11.2.1",
+    "sinon": "^4.0.1"
   },
   "ava": {
     "require": [
